@@ -6,7 +6,7 @@
 
 ## General Info
 This browser based web application to ...
-	
+	* Hi I am Teddy D
 ## Technologies
 Technologies used for this project:
 * HTML, CSS
