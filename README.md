@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+* Hi my name is Cheryl.  I'm excited about this project because it's a chance to create something new.
 	
 ## Technologies
 Technologies used for this project:
