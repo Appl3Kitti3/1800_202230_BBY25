@@ -1,1 +1,33 @@
+/* Group 2/Variant2 */
 
+#navBar {
+position: absolute;
+width: 100%;
+/* height: 65px; */
+left: 0px;
+top: 787px;
+background-color: rebeccapurple;
+color: white;
+text-align: center;
+}
+#navBar ul {
+  margin-top: 1%;
+  list-style: none;
+  display: inline-flex;
+}
+#navBar li {
+  padding-right: 5%;
+}
+#navBar img {
+  width: 50%;
+}
+#searchBar {
+  /* Group 5 */
+  color: white;
+position: absolute;
+width: 283px;
+height: 53px;
+left: 87px;
+top: 60px;
+background-color: rebeccapurple;
+}
