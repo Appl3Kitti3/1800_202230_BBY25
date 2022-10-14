@@ -1,8 +1,27 @@
 
 
 /* Group 2/Variant2 */
-
+#content {
+  margin: 2%;
+}
+header {
+  border: 3px solid;
+  padding: 1%;
+}
 #navBar {
+  text-align: right;
+}
+header h2 {
+  float: left;
+}
+#navBar ul {
+  list-style: none;
+}
+#navBar li {
+  padding-right: 2%;
+  display: inline;
+}
+#footerTest {
 position: absolute;
 width: 100%;
 /* height: 65px; */
@@ -12,26 +31,26 @@ background-color: rebeccapurple;
 color: white;
 text-align: center;
 }
-#navBar ul {
+#footerTest ul {
   margin-top: 1%;
   list-style: none;
   display: inline-flex;
 }
-#navBar li {
+#footerTest li {
   padding-right: 5%;
 }
-#navBar img {
+#footerTest img {
   width: 50%;
 }
 #searchBar {
   /* Group 5 */
   color: white;
-position: absolute;
-width: 283px;
-height: 53px;
-left: 87px;
-top: 60px;
-background-color: rebeccapurple;
+  position: absolute;
+  width: 283px;
+  height: 53px;
+  left: 87px;
+  top: 60px;
+  background-color: rebeccapurple;
 }
 
 .bg{
@@ -41,4 +60,8 @@ background-color: rebeccapurple;
   /* width: 100%; */
   /* padding: 50%; */
   background-size: cover;
+}
+#importantParagraph {
+  font-size: large;
+  font-weight: bold;
 }
