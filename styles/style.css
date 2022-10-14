@@ -1,3 +1,5 @@
+
+
 /* Group 2/Variant2 */
 
 #navBar {
@@ -30,4 +32,11 @@ height: 53px;
 left: 87px;
 top: 60px;
 background-color: rebeccapurple;
+}
+
+.bg{
+  background-image: url("./images/background.jpg");
+  /* background-color: aqua; */
+  /* height: 100vh; */
+  background-size: contain;
 }
