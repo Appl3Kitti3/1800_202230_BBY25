@@ -5,8 +5,9 @@
   margin: 2%;
 }
 header {
-  border: 3px solid;
+  /* border: 3px solid; */
   padding: 1%;
+  background-color: rgb(255, 255, 255, .5); 
 }
 #navBar {
   text-align: right;
@@ -21,27 +22,22 @@ header h2 {
   padding-right: 2%;
   display: inline;
 }
+#navBar a {
+  text-decoration: none;
+  color: black;
+}
 #footerTest {
-position: absolute;
-width: 100%;
-/* height: 65px; */
-left: 0px;
-top: 787px;
-background-color: rebeccapurple;
-color: white;
-text-align: center;
+  position: absolute;
+  width: 100%;
+  /* height: 65px; */
+  left: 0px;
+  top: 787px;
+  /* background-color: rebeccapurple; */
+  color: white;
+  text-align: center;
+  padding: 1%;
 }
-#footerTest ul {
-  margin-top: 1%;
-  list-style: none;
-  display: inline-flex;
-}
-#footerTest li {
-  padding-right: 5%;
-}
-#footerTest img {
-  width: 50%;
-}
+
 #searchBar {
   /* Group 5 */
   color: white;
