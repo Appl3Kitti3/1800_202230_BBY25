@@ -1,14 +1,42 @@
 
 
+@media screen and (max-width:700px) {
+  
+}
+@media screen and (min-width:701px) {
+  /* not ready */
+}
+
+body {
+  /* background-color: rebeccapurple; */
+  /* color: white; */
+  background-image: url("../images/lakeside.jpg");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  /* width: 100%; */
+}
 /* Group 2/Variant2 */
 #content {
   margin: 2%;
+  padding: 12%;
 }
 header {
   /* border: 3px solid; */
   padding: 1%;
   /* padding-top: 10%; */
   background-color: rgb(255, 255, 255, .5); 
+}
+
+#bigContent {
+  /* background-color: cadetblue; */
+  border-radius: 50px;
+  padding: 1%;
+  text-align: center;
+
+  /* width: 100%; */
+  /* margin-top: -50%; */
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8); 
 }
 #navBar {
   text-align: right;
@@ -32,17 +60,21 @@ header h2 {
   color: black;
 }
 #footerTest {
-  position: absolute;
-  width: 100%;
-  /* height: 65px; */
-  left: 0px;
-  top: 787px;
+  /* display: flex;  */
+  /* position: absolute; */
+  /* width: 100%; */
+  /* height: 20px;/ */
+  /* left: 0px; */
+  /* margin-bottom: 5%; */
+  /* top: 787px; */
   /* background-color: rebeccapurple; */
   color: white;
   text-align: center;
-  padding: 1%;
+  /* padding: 1%; */
 }
-
+#button1 {
+  /* background-color: rebeccapurple; */
+}
 #searchBar {
   /* Group 5 */
   color: white;
@@ -54,14 +86,6 @@ header h2 {
   background-color: rebeccapurple;
 }
 
-.bg{
-  background-image: url("../images/lakeside.jpg");
-  /* background-color: aqua; */
-  /* height: 100vh; */
-  /* width: 100%; */
-  /* padding: 50%; */
-  background-size: cover;
-}
 #importantParagraph {
   font-size: large;
   font-weight: bold;
