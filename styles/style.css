@@ -55,7 +55,7 @@ header h2 {
 }
 
 .bg{
-  background-image: url("/images/lakeside.jpg");
+  background-image: url("../images/lakeside.jpg");
   /* background-color: aqua; */
   /* height: 100vh; */
   /* width: 100%; */

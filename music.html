@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>MoodUp - Login</title>
+    <title>MoodUp Music</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -15,19 +15,14 @@
     <!-- Boostrap Library JS CDN  go here -->
 
     <!-- Other libraries go here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/music.css">
 
 </head>
 
-<body class="bg">
+<body class="bg-music">
     <header>
         <div id="navBar">
             <h2>
@@ -48,12 +43,19 @@
 
     <!--Start landing page section-->
     <div id="content">
-        <div class="caption text-center">
-            <h1>Welcome to MoodUp</h1>
-            <p id="importantParagraph">MoodUp is here to help you take a break, whatever that may look like.</p>
-            <br/><br/>
-            <a class="btn btn-outline-dark" href= "login.html">Take a break</a>
-          </div>      
+      <div class="caption text-center">
+        <h1>Music Library</h1>
+      
+        <div class="d-grid gap-2">
+          <button class="btn btn-info btn-lg" type="button">Song 1</button>
+          <button class="btn btn-info btn-lg" type="button">Song 2</button>
+          <button class="btn btn-info btn-lg" type="button">Song 3</button>
+          <button class="btn btn-info btn-lg" type="button">Song 4</button>
+          
+          
+        </div>
+    
+      </div>
     </div>
 
 
@@ -70,7 +72,6 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
-    <script src="./scripts/firebaseAPI_TEAM25.js"></script>
 
 </body>
 
