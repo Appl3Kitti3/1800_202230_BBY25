@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>MoodUp Music</title>
+    <title>MoodUp</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -27,14 +27,15 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    
 
+    
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/music.css">
 
 </head>
 
-<body class="bg-music">
+<body class="bg">
     <div id="navbarMainPlaceholder"></div>
 
     <!-- <div id="searchBar">
@@ -43,20 +44,57 @@
 
     <!--Start landing page section-->
     <div id="content">
-      <div class="caption text-center">
-        <h1>Enjoy Some Music</h1>
-      
-       <iframe width="560" height="315" src="https://www.youtube.com/embed/jfKfPfyJRdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    
-      </div>
-    </div>
+        <h1>Timers</h1>
+        <div id="timerBox">
+            <div class="timerContainer">
+                <p>Clock</p>
+                <h2>
+                    <span id="deadline0">
 
 
+                    </span>
+                    <br/>
+                    <form>
+                    </form>
+                    <button onclick="startTimer('deadline0')">a</button>
+                    <button onclick="stopTimer('deadline0')">b</button>
+                </h2>
 
-    <div id="footerTest">
-        <p> &copy; Copyright 2022 MoodUp</p>
-        <p>Aric | Cheryl | Teddy</p>
-    </div>
+            </div>
+            <div class="timerContainer">
+                <p>Clock</p>
+                <h2>
+                    <span id="deadline1"></span><br/>
+                    <button onclick="startTimer('deadline1')">a</button>
+                    <button onclick="stopTimer('deadline1')">b</button>
+                </h2>
+
+            </div>
+            <div class="timerContainer">
+                <p>Clock</p>
+                <h2>
+                    <span id="deadline2"></span><br/>
+                    <button onclick="startTimer('deadline2')">aa</button>
+                    <button onclick="stopTimer('deadline2')">b</button>
+                </h2>
+
+            </div>
+            <div class="timerContainer">
+                <p>Clock</p>
+                <h2>
+                    <span id="deadline3"></span><br/>
+                    <button onclick="startTimer('deadline3')">a</button>
+                    <button onclick="stopTimer('deadline3')">b</button>
+                </h2>
+
+            </div>
+        </div>
+      <!-- <div class="container caption text-center"> -->
+        
+      <!-- </div> -->
+
+
+      <div id="footerPlaceholder"></div>
   
 
     <!---------------------------------------------->
@@ -65,8 +103,10 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
+    </div>
     <script src="./scripts/teddyscript.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    
 
 </body>
 
