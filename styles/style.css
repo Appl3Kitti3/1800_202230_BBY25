@@ -105,3 +105,15 @@ input[type=text] {
   border: 3px solid red;
   border-radius: 16px;
 }
+
+.card {
+  margin: 0 auto;
+  width: 50%;
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+h1 {
+  margin-top: 1em;
+  text-align: center;
+}
