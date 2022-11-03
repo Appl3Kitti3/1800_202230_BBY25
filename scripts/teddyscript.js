@@ -1,53 +1,97 @@
-// function timerAttempt1() {
-  // define date and variable
-  // var systemDate = new Date();
-  // systemDate.setTime(12333);
   var deadLine = new Date(), deadLine1 = new Date(), deadLine2 = new Date(), deadLine3 = new Date();
-  setUp();
 
-  // right i forgot bout that works...
-  document.getElementById("deadline0").innerHTML = 
-  "<input type='text' maxlength=2 pattern='[0-9]' placeholder='h' id='hour' class='measurement'>" 
-  + "<input type='text' maxlength=2 pattern='[0-9]' placeholder='m' id='minute' class='measurement'>"
-  + "<input type='text' maxlength=2 pattern='[0-9]' placeholder='s' id='second' class='measurement'>";
-  
-  function lol(tv) {
-    console.log(tv);
+  var List = [deadLine,deadLine1,deadLine2,deadLine3];
+  // var deadLine1 = new Date();
+  // var deadLine2 = new Date();
+  // var deadLine3 = new Date();
+  for (var i = 0; i < List.length; i++) {
+    List[i].setHours(0);
+    List[i].setMinutes(0);
+    List[i].setSeconds(0);
   }
-  document.getElementById("hour","minute","second").onchange = function() {let e = this.value; lol(e);};
-  // document.getElementById("minute").onchange = function() {let b = this.value; lol(b);};
-  // document.getElementById("second").onchange = function() {let c = this.value; lol(c);};
+  
+  // Millisecond
+  // Have a CSV or text file to save time results or initalize it to 00:00:00
+  // var sixMinutesandfiftySeconds = (10 * 60 * 1000) + (10 * 1000);
+  // var teste = (12 * 60 * 1000) + (5 * 1000);
+  // var testTimer2 = (6 * 60 * 1000) + (15 * 1000);
+  // var testTimer3 = (1 * 60 * 1000) + (9 * 1000);
+
+  // Testers
+  deadLine.setTime(deadLine.getTime());
+  deadLine1.setTime(deadLine1.getTime());
+  deadLine2.setTime(deadLine2.getTime());
+  deadLine3.setTime(deadLine3.getTime());
+  
+  for (var i = 0; i < List.length; i++) {
+      // learn about Method chaining~
+    document.getElementById("deadline" + i).innerHTML = List[i].getMinutes() + ":" + List[i].getSeconds();
+    updateName("deadline" + i,List[i]);
+  }
+
+  function printZero(timeNum) {
+    if (timeNum < 10) {
+      return "0" + timeNum;
+    }
+    return timeNum;
+
+  }
+  // right i forgot bout that works...
+  // let a = document.getElementById("deadline0");
+  // document.getElementById("deadline0").getAttribute();
+  document.getElementById("deadline0").innerHTML= '<button onclick="changeToButton(\'deadline0\')">' + printZero(deadLine.getHours()) + ':' + printZero(deadLine.getMinutes()) + ':' + printZero(deadLine.getSeconds()) + '</button>'
+
+  document.getElementById("deadline1").innerHTML= '<button onclick="changeToButton(\'deadline1\')">' + printZero(deadLine1.getHours()) + ':' + printZero(deadLine1.getMinutes()) + ':' + printZero(deadLine1.getSeconds()) + '</button>'
+  
+  document.getElementById("deadline2").innerHTML= '<button onclick="changeToButton(\'deadline2\')">' + printZero(deadLine2.getHours()) + ':' + printZero(deadLine2.getMinutes()) + ':' + printZero(deadLine2.getSeconds()) + '</button>'
+  
+  document.getElementById("deadline3").innerHTML= '<button onclick="changeToButton(\'deadline3\')">' + printZero(deadLine3.getHours()) + ':' + printZero(deadLine3.getMinutes()) + ':' + printZero(deadLine3.getSeconds()) + '</button>'
+  
+  function changeToButton(thing) {
+    console.log(thing);
+    console.log("here")
+    // document.getElementById("deadline0").innerHTML = '<p>Helo</p>'
+    document.getElementById(thing).innerHTML = 
+    "<input type='text' maxlength=2 pattern='[0-9]' placeholder='h' id='hour'>" 
+    + "<input type='text' maxlength=2 pattern='[0-9]' placeholder='m' id='minute'>"
+    + "<input type='text' maxlength=2 pattern='[0-9]' placeholder='s' id='second'>";
+
+    document.getElementById("hour").onchange = function() {let hr = this.value; lol(hr, "hour",thing);};
+    document.getElementById("minute").onchange = function() {let min = this.value; lol(min,"minute",thing);};
+    document.getElementById("second").onchange = function() {let sec = this.value; lol(sec,"second",thing);};
+  }
+  function lol(value,type,id) {
+    console.log(value);
+    switch (type) {
+      case "hour":
+        getTimerbyId(id).setHours(value);
+        break;
+        case "minute":
+          getTimerbyId(id).setMinutes(value);
+          console.log(getTimerbyId(id).getMinutes());
+      break;
+      case "second":
+        getTimerbyId(id).setSeconds(value);
+      break;
+    }
+  }
+
+  
 
   // ("#hour").on("change", function() {let e = this.value; lol(e);});
   // ("#minute").on("change", function() {let e = this.value; lol(e);});
   // ("#second").on("change", function() {let e = this.value; lol(e);});
 
-  function setUp() {
-    var List = [deadLine,deadLine1,deadLine2,deadLine3];
-    // var deadLine1 = new Date();
-    // var deadLine2 = new Date();
-    // var deadLine3 = new Date();
-    for (var i = 0; i < List.length; i++) {
-      List[i].setTime(-57600000);
-    }
-    
-    // Millisecond
-    
-    var sixMinutesandfiftySeconds = (10 * 60 * 1000) + (10 * 1000);
-    var teste = (12 * 60 * 1000) + (5 * 1000);
-    var testTimer2 = (6 * 60 * 1000) + (15 * 1000);
-    var testTimer3 = (1 * 60 * 1000) + (9 * 1000);
-  
-    // Testers
-    deadLine.setTime(deadLine.getTime() + sixMinutesandfiftySeconds);
-    deadLine1.setTime(deadLine1.getTime() + teste);
-    deadLine2.setTime(deadLine2.getTime() + testTimer2);
-    deadLine3.setTime(deadLine3.getTime() + testTimer3);
-    
-    for (var i = 0; i < List.length; i++) {
-        // learn about Method chaining~
-      document.getElementById("deadline" + i).innerHTML = List[i].getMinutes() + ":" + List[i].getSeconds();
-      updateName("deadline" + i,List[i]);
+  function getTimerbyId(elementId) {
+    switch (elementId) {
+      case "deadline0":
+        return deadLine;
+      case "deadline1":
+        return deadLine1;
+      case "deadline2":
+        return deadLine2;
+      case "deadline3":
+        return deadLine3;
     }
   }
   
@@ -57,30 +101,26 @@
   }
 
   function updateName(id,timer) {
-    if (timer.getSeconds() < 10) {
-      document.getElementById(id).innerHTML = timer.getMinutes() + ":" + 0 + timer.getSeconds();
-    }
+    document.getElementById(id).innerHTML= '<button onclick="changeToButton(\'' + id + '\')">' + printZero(timer.getHours()) + ':' + printZero(timer.getMinutes()) + ':' + printZero(timer.getSeconds()) + '</button>'
+    
   }
 
   function loop(id,timer) {
     timer.setTime(timer.getTime() - 1000);
-    document.getElementById(id).innerHTML = timer.getMinutes() + ":" + timer.getSeconds();
-    updateName(id,timer);
-    if (timer.getTime() == -57600000) {
+    document.getElementById(id).innerHTML= '<button onclick="changeToButton(\'' + id + '\')">' + printZero(timer.getHours()) + ':' + printZero(timer.getMinutes()) + ':' + printZero(timer.getSeconds()) + '</button>'
+    if (timer.getHours()+timer.getMinutes()+timer.getSeconds() == 0) {
       alert("A timer is finished!");
       stopTimer(id);
     }
   }
   
   var ex1,ex2,ex3,ex4;
-  const delay = 0;
+  const delay = 1000;
 
   function startTimer(id) {
     switch (id) {
       case "deadline0":
         console.log("DeadLine 0 is at go");
-
-
         ex1 = setInterval(loop,delay,id,deadLine);
       break;
       case "deadline1":
@@ -101,15 +141,19 @@
     switch (id) {
       case "deadline0":
         clearInterval(ex1);
+        updateName(id,deadLine);
       break;
       case "deadline1":
         clearInterval(ex2);
+        updateName(id,deadLine1);
       break;
       case "deadline2":
         clearInterval(ex3);
+        updateName(id,deadLine2);
       break;
       case "deadline3":
         clearInterval(ex4);
+        updateName(id,deadLine3);
       break;
     }
   }
