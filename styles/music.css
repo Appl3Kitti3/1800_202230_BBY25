@@ -1,7 +1,10 @@
+.sky-blue-btn{
+  padding: 18px 28px;
+  background-color: skyblue;
+  line-height: 22pt;
+  border: none;
+  border-radius: 0.25rem;
 
 
-.bg-music {
-  background-color: #585252;
-  background-repeat: no-repeat;
-  background-size: cover;
+  
 }
