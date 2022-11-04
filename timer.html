@@ -47,20 +47,20 @@
         <h1>Timers</h1>
         <div id="timerBox">
             <div class="timerContainer">
-                <p>Clock</p>
+                <span id="TimerName0"></span>
                 <h2>
                     <!-- <button id="deadline0" onclick="changeToButton"></button> -->
-                    <span id="deadline0">
+                    <span id="deadline1">
                     </span>
                     <br/>
                     <form>
                     </form>
-                    <button class="playNpause" onclick="startTimer('deadline0')">
+                    <button class="playNpause" id="play1" onclick="startTimer('1')">
                         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                             <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                           </svg>
                         </button>
-                    <button class="playNpause" onclick="stopTimer('deadline0')">
+                    <button class="playNpause" id="pause1" disabled onclick="stopTimer('1')">
                         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
                             <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
                           </svg>
@@ -69,32 +69,32 @@
 
             </div>
             <div class="timerContainer">
-                <p>Clock</p>
-                <h2>
-                    <span id="deadline1"></span><br/>
-                    <button class="playNpause" onclick="startTimer('deadline1')">
-                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                            <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-                          </svg>
-                    </button>
-                    <button class="playNpause" onclick="stopTimer('deadline1')">
-                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
-                            <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
-                          </svg>
-                        </button>
-                </h2>
-
-            </div>
-            <div class="timerContainer">
-                <p>Clock</p>
+                <span id="TimerName1"></span>
                 <h2>
                     <span id="deadline2"></span><br/>
-                    <button class="playNpause" class="e" onclick="startTimer('deadline2')">
+                    <button class="playNpause" id="play2" onclick="startTimer('2')">
                         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                             <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                           </svg>
                     </button>
-                    <button class="playNpause" onclick="stopTimer('deadline2')">
+                    <button class="playNpause" id="pause2" disabled onclick="stopTimer('2')">
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+                            <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                          </svg>
+                        </button>
+                </h2>
+
+            </div>
+            <div class="timerContainer">
+                <span id="TimerName2"></span>
+                <h2>
+                    <span id="deadline3"></span><br/>
+                    <button class="playNpause" id="play3" onclick="startTimer('3')">
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                            <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                          </svg>
+                    </button>
+                    <button class="playNpause" id="pause3" disabled onclick="stopTimer('3')">
                         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
                             <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
                           </svg></button>
@@ -102,15 +102,15 @@
 
             </div>
             <div class="timerContainer">
-                <p>Clock</p>
+                <span id="TimerName3"></span>
                 <h2>
-                    <span id="deadline3"></span><br/>
-                    <button class="playNpause" class="e" onclick="startTimer('deadline3')">
+                    <span id="deadline4"></span><br/>
+                    <button class="playNpause" id="play4" onclick="startTimer('4')">
                         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                             <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                           </svg>
                     </button>
-                    <button class="playNpause" onclick="stopTimer('deadline3')">
+                    <button class="playNpause" id="pause4" disabled onclick="stopTimer('4')">
                         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
                             <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
                           </svg></button>
@@ -135,6 +135,7 @@
     </div>
     <script src="./scripts/timer.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/firebaseAPI_TEAM25.js"></script>
     
 
 </body>

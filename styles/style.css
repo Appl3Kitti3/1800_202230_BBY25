@@ -2,10 +2,12 @@
   body {
     height: 100vh;
   }
-@media screen and (max-width:768px) {
   .playNpause {
     background: none;
     border: none;
+  }
+@media screen and (max-width:768px) {
+  .playNpause {
     width: 10%;
   }
 }
@@ -14,13 +16,27 @@
     margin-left: -10%;
   }
   .playNpause {
-    /* width: 10%; */
-    /* display: inline-flex; */
+    width: 8%;
+    background-color: white;
+    display: inline-flex;
+    /* position: absolute; */
+
     text-align: center;
-    width: 10%;
+    justify-content: center;
+    align-items: center;
+    /* width: 7%; */
+  }
+  .playNpause:active {
+    background-color: cadetblue;
+    width: 7%;
+  }
+  button[disabled]:active {
+    background-color: transparent;
   }
   svg {
-    width: 100%;
+    
+    width: 50%;
+    /* text-align: center; */
   }
 
   /* not ready */
@@ -38,10 +54,9 @@ body {
   /* color: white; */
   background-image: url("../images/lakeside.jpg");
   background-size: cover;
+  background-attachment: fixed;
   /* height: 100vh; */
-  
-  /* background-repeat: no-repeat; */
-  /* width: 100%; */
+  /* width: 50%; */
 }
 /* Group 2/Variant2 */
 #content {
