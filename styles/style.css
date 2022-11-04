@@ -1,20 +1,36 @@
-
   body {
     height: 100vh;
   }
+
   .playNpause {
     background: none;
     border: none;
   }
+
+  .playNpause:active {
+    background-color: cadetblue;
+    width: 7%;
+  }
+  button[disabled]:active {
+    background-color: transparent;
+  }
+  svg {    
+    width: 100%;
+  }
 @media screen and (max-width:768px) {
   .playNpause {
     width: 10%;
+
+  }
+  .timerContainer {
+    width: 65%;
   }
 }
 @media screen and (min-width:768px){
   .bi {
     margin-left: -10%;
   }
+
   .playNpause {
     width: 8%;
     background-color: white;
@@ -26,19 +42,6 @@
     align-items: center;
     /* width: 7%; */
   }
-  .playNpause:active {
-    background-color: cadetblue;
-    width: 7%;
-  }
-  button[disabled]:active {
-    background-color: transparent;
-  }
-  svg {
-    
-    width: 50%;
-    /* text-align: center; */
-  }
-
   /* not ready */
   /* body {
     color: white;
@@ -128,29 +131,21 @@ input[type=text] {
   /* border: none; */
 }
 
-.timers {
-  /* display: flex; */
-  border: 3px solid black;
-  /* width: 100px; */
-  padding: 10%;
-}
 #timerBox {
   text-align: center;
   display:inline-flex;
   flex-direction: column;
   /* background-color: rebeccapurple; */
   width: 100%;
-
-  
   justify-items:center;
   align-items:center;
 }
 .timerContainer {
   background-color: rgba(184, 234, 252, 0.677);
   align-items: center;
+  text-align: center;
   margin-bottom: 1%;
   padding: 1%;
-  width: 75%;
   border-radius: 16px;
 }
 
