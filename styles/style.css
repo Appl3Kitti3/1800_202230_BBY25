@@ -9,7 +9,7 @@
 
   .playNpause:active {
     background-color: cadetblue;
-    width: 7%;
+    width: 15%;
   }
   button[disabled]:active {
     background-color: transparent;
@@ -19,20 +19,42 @@
   }
 @media screen and (max-width:768px) {
   .playNpause {
-    width: 10%;
+    width: 18%;
+    
+    display: inline-flex;
+    /* position: absolute; */
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
 
   }
   .timerContainer {
-    width: 65%;
+    background-color: rgba(184, 234, 252, 0.677);
+    align-items: center;
+    text-align: center;
+    width: 45%;
+    margin-bottom: 1%;
+    padding: 1%;
+    border-radius: 16px;
   }
 }
 @media screen and (min-width:768px){
+  .timerContainer {
+    background-color: rgba(184, 234, 252, 0.677);
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1%;
+    padding: 1%;
+    border-radius: 16px;
+  }
   .bi {
     margin-left: -10%;
   }
 
   .playNpause {
-    width: 8%;
+    width: 50px;
     background-color: white;
     display: inline-flex;
     /* position: absolute; */
@@ -131,14 +153,7 @@ input[type=text] {
   justify-items:center;
   align-items:center;
 }
-.timerContainer {
-  background-color: rgba(184, 234, 252, 0.677);
-  align-items: center;
-  text-align: center;
-  margin-bottom: 1%;
-  padding: 1%;
-  border-radius: 16px;
-}
+
 
 .card {
   margin: 0 auto;
