@@ -90,19 +90,10 @@ h2 {
 }
 
 #footerTest {
-  /* display: flex;  */
   position: sticky;
-  /* justify-content: center; */
-
-  /* width: 100%; */
-  /* height: 20px;/ */
-  /* left: 0px; */
   margin-top: 10%;
-  /* top: 787px; */
-  /* background-color: rebeccapurple; */
   color: white;
   text-align: center;
-  /* padding: 1%; */
 }
 
 #searchBar {
