@@ -125,7 +125,7 @@
 
     let a = document.getElementById("play" + id);
     a.setAttribute("disabled","");
-    a.setAttribute("style","width: 8%;");
+    a.setAttribute("style","width: 18%;");
 
     document.getElementById("pause" + id).removeAttribute("disabled");
 
