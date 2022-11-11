@@ -5,14 +5,13 @@ function populateCardsDynamically() {
   db.collection("music").get()
     .then(allMusic => {
       allMusic.forEach(doc => {
-        var musicTitle = doc.data().title; //gets the name field
-        var musicLink = doc.data().link; //gets the length field
-        var musicDescription = doc.data().description;
+        var musicTitle = doc.data().title; //gets the title field
+        var musicLink = doc.data().link; //gets Youtube link
+        var musicDescription = doc.data().description; //gets the description field
         let testMusicCard = musicCardTemplate.content.cloneNode(true);
-        testMusicCard.querySelector('.card-title').innerHTML = musicTitle;     //equiv getElementByClassName
+        testMusicCard.querySelector('.card-title').innerHTML = musicTitle;     
         testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
-        testMusicCard.querySelector('a').onclick = () => setMusicData(musicLink);//equiv getElementByTagName
-        // testMusicCard.querySelector('img').src = `./images/${hikeID}.jpg`;   //equiv getElementByTagName
+        testMusicCard.querySelector('a').onclick = () => setMusicData(musicLink);
         musicCardGroup.appendChild(testMusicCard);
       })
 
