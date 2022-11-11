@@ -1,10 +1,20 @@
-.sky-blue-btn{
-  padding: 18px 28px;
-  background-color: skyblue;
-  line-height: 22pt;
-  border: none;
-  border-radius: 0.25rem;
+.music-card {
+  background-color: #fefefe8a;
+  margin: 1em auto;
+  padding: 0;
+  width: 40%;
+}
 
+.play-button svg{
+  text-decoration: none;
+  margin: 0 auto;
+}
 
-  
+.card-body {
+color: black;
+opacity: 100%;
+}
+
+.card-text {
+font-size: 14pt;
 }
