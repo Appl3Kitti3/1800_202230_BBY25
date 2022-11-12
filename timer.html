@@ -61,12 +61,13 @@
       <h1>Timers</h1>
       <div id="timerBox">
         <div class="timerContainer">
-          <span id="TimerName0"></span>
+            <p>
+          <span id="TimerName0" class="timerName"></span>
+        </p>
           <h2>
-            <!-- <button id="deadline0" onclick="changeToButton"></button> -->
             <span id="deadline1"> </span>
-            <br />
-            <form></form>
+            <br/>
+
             <button class="playNpause" id="play1" onclick="startTimer('1')">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +100,13 @@
           </h2>
         </div>
         <div class="timerContainer">
-          <span id="TimerName1"></span>
+          <p>
+            <span id="TimerName1" class="timerName"></span>
+            <!-- <button id="flame" style="background-color: transparent; border: 0;"></button> -->
+            <!-- <input type="button" id="TimerName1_1" class="TELEVISION"/> -->
+
+          </p>
+          <!-- <label for="TimerName1_1"></label> span -->
           <h2>
             <span id="deadline2"></span><br />
             <button class="playNpause" id="play2" onclick="startTimer('2')">
@@ -134,7 +141,9 @@
           </h2>
         </div>
         <div class="timerContainer">
-          <span id="TimerName2"></span>
+          <p>
+          <span id="TimerName2" class="timerName"></span>
+        </p>
           <h2>
             <span id="deadline3"></span><br />
             <button class="playNpause" id="play3" onclick="startTimer('3')">
@@ -169,7 +178,11 @@
           </h2>
         </div>
         <div class="timerContainer">
-          <span id="TimerName3"></span>
+          <p>
+          <span id="TimerName3" class="timerName"></span>
+          <!-- <input type="button" id="TimerName1_1" class="TELEVISION"/> -->
+
+        </p>
           <h2>
             <span id="deadline4"></span><br />
             <button class="playNpause" id="play4" onclick="startTimer('4')">
@@ -222,8 +235,8 @@
       <!-- Link to scripts of your own -->
       <!-- <script src="./scripts/script.js"></script> -->
     </div>
+    <script src="./scripts/firebaseAPI_TEAM25.js"></script>
     <script src="./scripts/timer.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/firebaseAPI_TEAM25.js"></script>
   </body>
 </html>

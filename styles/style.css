@@ -7,10 +7,7 @@
     border: none;
   }
 
-  .playNpause:active {
-    background-color: cadetblue;
-    width: 15%;
-  }
+
   button[disabled]:active {
     background-color: transparent;
   }
@@ -18,6 +15,11 @@
     width: 100%;
   }
 @media screen and (max-width:768px) {
+  .playNpause:active {
+    background-color: cadetblue;
+    width: 15%;
+  }
+
   .playNpause {
     width: 18%;
     
@@ -53,6 +55,10 @@
     margin-left: -10%;
   }
 
+  .playNpause:active {
+    background-color: cadetblue;
+    width: 50px;
+  }
   .playNpause {
     width: 50px;
     background-color: white;
@@ -107,8 +113,8 @@ body {
 }
 
 h2 {
-  float: left;
-  margin-top: -0.2%;
+  /* float: left; */
+  /* margin-top: -0.2%; */
 }
 
 #footerTest {
@@ -133,7 +139,7 @@ h2 {
   font-size: large;
   font-weight: bold;
 }
-input[type=text] {
+input[type=number] {
   /* padding: 1%; */
   text-align: center;
   width: 14%;
@@ -170,3 +176,14 @@ h1 {
 .nav-link {
   float: right;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
