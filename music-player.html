@@ -35,6 +35,10 @@
 </head>
 
 <body class="bg">
+
+<template id="musicPlayerTemplate">
+  <iframe width="" height="" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</template>
     <div id="navbarMainPlaceholder"></div>
 
     <!-- <div id="searchBar">
@@ -45,8 +49,9 @@
     <div id="content">
       <div class="caption text-center">
         <h1>Enjoy Some Music</h1>
-      
-       <iframe width="560" height="315" src="https://www.youtube.com/embed/jfKfPfyJRdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div id="musicPlayerWindow">
+       
+       </div>
     
       </div>
     </div>
@@ -67,9 +72,11 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
-    <script src="./scripts/teddyscript.js"></script>
-    <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/firebaseAPI_TEAM25.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <!-- <script src="./scripts/music.js"></script> -->
+    <script src="./scripts/music-player.js"></script>
+    
 
 </body>
 
