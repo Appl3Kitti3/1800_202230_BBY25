@@ -1,4 +1,9 @@
 .card {
-  background-color: skyblue;
+  background-color: #fefefe8a;
   background-size: cover;
+}
+
+.blockquote-footer {
+  margin-top: 2%;
+  font-style: italic;
 }

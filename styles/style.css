@@ -1,21 +1,45 @@
-  body {
-    height: 100vh;
-    overflow-x: hidden;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Raleway:wght@400;600&display=swap');
 
-  .playNpause {
-    background: none;
-    border: none;
-  }
+@font-face {
+  font-family: "Dancing Script";
+  src: url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+}
 
+@font-face {
+  font-family: "Raleway";
+  src: url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+}
 
-  button[disabled]:active {
-    background-color: transparent;
-  }
-  svg {    
-    width: 100%;
-  }
-@media screen and (max-width:768px) {
+@font-face {
+  font-family: "Raleway Bold"; 
+  src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+}
+
+nav > h2 {
+  font-family: "Dancing Script";
+  letter-spacing: 0.1em;
+  font-weight: bold;
+}
+
+body {
+  height: 100vh;
+  overflow-x: hidden;
+  font-family: "Raleway";
+  font-weight: 600;
+}
+
+.playNpause {
+  background: none;
+  border: none;
+}
+
+button[disabled]:active {
+  background-color: transparent;
+}
+svg {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
   .playNpause:active {
     background-color: cadetblue;
     width: 15%;
@@ -23,15 +47,13 @@
 
   .playNpause {
     width: 18%;
-    
+
     display: inline-flex;
     /* position: absolute; */
 
     text-align: center;
     justify-content: center;
     align-items: center;
-
-
   }
   .timerContainer {
     background-color: rgba(184, 234, 252, 0.677);
@@ -43,7 +65,7 @@
     border-radius: 16px;
   }
 }
-@media screen and (min-width:768px){
+@media screen and (min-width: 768px) {
   .timerContainer {
     background-color: rgba(184, 234, 252, 0.677);
     align-items: center;
@@ -95,7 +117,7 @@ body {
   /* border: 3px solid; */
   padding: 1%;
   /* margin-top: -1%; */
-  background-color: rgb(255, 255, 255, .5); 
+  background-color: rgb(255, 255, 255, 0.5);
   color: black;
   /* display: flex;
   align-items: center; */
@@ -140,7 +162,7 @@ h2 {
   font-size: large;
   font-weight: bold;
 }
-input[type=number] {
+input[type="number"] {
   /* padding: 1%; */
   text-align: center;
   width: 14%;
@@ -153,14 +175,13 @@ input[type=number] {
 
 #timerBox {
   text-align: center;
-  display:inline-flex;
+  display: inline-flex;
   flex-direction: column;
   /* background-color: rebeccapurple; */
   width: 100%;
-  justify-items:center;
-  align-items:center;
+  justify-items: center;
+  align-items: center;
 }
-
 
 .card {
   margin: 0 auto;
@@ -180,11 +201,11 @@ h1 {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
