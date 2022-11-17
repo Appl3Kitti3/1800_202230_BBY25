@@ -188,3 +188,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.fixed-bottom {
+  background-color: rgb(255, 255, 255, .5);
+}

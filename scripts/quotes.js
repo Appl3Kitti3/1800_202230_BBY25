@@ -32,6 +32,9 @@ async function getCSVdata() {
   });
 }
 
+// getCSVdata().then({
+//   // dont put anything here
+// });
 function writeCSVData(list) {
   firebase.auth().onAuthStateChanged(user => {
     // If user logged in or current logged in user
