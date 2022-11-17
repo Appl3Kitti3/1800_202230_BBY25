@@ -26,13 +26,14 @@ function populateCardsDynamically() {
       allMusic.forEach(doc => {
         
         var musicTitle = doc.data().title; //gets the title field
-        var musicLink = doc.data().link; //gets Youtube link
-        var musicDescription = doc.data().description; //gets the description field
+        var videoId = doc.data().videoId; //gets Youtube link
+        var thumbnail = doc.data().thumbnail;
         let testMusicCard = musicCardTemplate.content.cloneNode(true);
         testMusicCard.querySelector('.card-title').innerHTML = musicTitle;     
-        testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
-        testMusicCard.querySelector('a').onclick = () => setMusicData(musicLink);
-        testMusicCard.querySelector('#add-fave').onclick = () => saveBookmark(musicLink);
+        // testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
+        testMusicCard.querySelector('a').onclick = () => setMusicData(videoId);
+        testMusicCard.querySelector('#add-fave').onclick = () => saveBookmark(videoId);
+        testMusicCard.querySelector('.card-img-top').src = thumbnail;
         musicCardGroup.appendChild(testMusicCard);
       })
 
@@ -41,12 +42,11 @@ function populateCardsDynamically() {
 populateCardsDynamically();
 
 function setMusicData(id){
-            localStorage.setItem ('link', id);
+            localStorage.setItem ('videoId', id);
 }
 
+
 function saveBookmark(musicLink) {
-
-
     currentUser.set({
             bookmarks: firebase.firestore.FieldValue.arrayUnion(musicLink)
         }, {
@@ -60,3 +60,53 @@ function saveBookmark(musicLink) {
             // document.getElementById(iconID).innerText = 'bookmark';
         });
 }
+
+function removeBookmark(musicLink) {
+  currentUser.set({
+    bookmarks: firebase.firestore.FieldValue.arrayRemove(musicLink)
+    },{
+      merge: true
+    }).then(function () {
+    console.log("bookmark " + musicLink + "has been deleted for: " + currentUser);
+    var iconID = 'save-' + musicLink;
+    // document.getElementById(iconID).innerText = 'bookmark_border';
+    })
+  }
+
+//Uploads new music information into Firestore
+// async function getMusicData() {
+//   const response = await fetch("./playlistItems.json");
+//   const data = await response.text();
+//   let parsedData = JSON.parse(data);
+//   console.log(parsedData);
+
+//   for (let i = 0; i < parsedData.length; i++) {
+//     let item = parsedData[i];
+//     let musicTitle = item["snippet"]["title"];
+//     console.log(musicTitle);
+
+//     let thumbnailImg = item["snippet"]["thumbnails"]["medium"]["url"];
+//     console.log(thumbnailImg);
+//     let musicId = item["snippet"]["resourceId"]["videoId"];
+//     console.log(musicId);
+
+    
+//     function writeMusicData() {
+//       firebase.auth().onAuthStateChanged(user => {
+
+//         if (user) {
+//           var musicRef = db.collection("music");
+//           musicRef.add({
+//             title: musicTitle,
+//             thumbnail: thumbnailImg,
+//             videoId: musicId
+//             })
+//             }
+//             })
+//             }
+//             writeMusicData();
+    
+//     }
+//   }
+
+  // getMusicData();
