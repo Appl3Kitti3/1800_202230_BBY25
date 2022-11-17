@@ -40,6 +40,10 @@ svg {
   width: 100%;
 }
 @media screen and (max-width: 768px) {
+  h2 {
+    /* text-align: center; */
+
+  }
   .playNpause:active {
     background-color: cadetblue;
     width: 15%;
@@ -64,6 +68,7 @@ svg {
     padding: 1%;
     border-radius: 16px;
   }
+
 }
 @media screen and (min-width: 768px) {
   .timerContainer {
@@ -118,6 +123,8 @@ body {
   padding: 1%;
   /* margin-top: -1%; */
   background-color: rgb(255, 255, 255, 0.5);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
   color: black;
   /* display: flex;
   align-items: center; */
@@ -210,5 +217,8 @@ input[type="number"] {
 }
 
 .fixed-bottom {
-  background-color: rgb(255, 255, 255, .5);
+  background-color: rgb(255, 255, 255, 0.5);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
 }
+
