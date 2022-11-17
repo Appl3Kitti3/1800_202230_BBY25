@@ -2,3 +2,8 @@
   background-color: skyblue;
   background-size: cover;
 }
+
+.blockquote-footer {
+  margin-top: 2%;
+  font-style: italic;
+}
