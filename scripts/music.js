@@ -31,8 +31,15 @@ function populateCardsDynamically() {
         let testMusicCard = musicCardTemplate.content.cloneNode(true);
         testMusicCard.querySelector('.card-title').innerHTML = musicTitle;     
         // testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
+        
         testMusicCard.querySelector('a').onclick = () => setMusicData(videoId);
-        testMusicCard.querySelector('#add-fave').onclick = () => saveBookmark(videoId);
+        testMusicCard.querySelector('i').id = 'save-' + videoId;
+        testMusicCard.querySelector('i').onclick = () => {
+          if (document.querySelector('i').innerText === 'bookmark_border') {
+          saveBookmark(videoId);
+          } else {
+          removeBookmark(videoId);
+          }};
         testMusicCard.querySelector('.card-img-top').src = thumbnail;
         musicCardGroup.appendChild(testMusicCard);
       })
@@ -57,21 +64,24 @@ function saveBookmark(musicLink) {
             var iconID = 'save-' + musicLink;
             //console.log(iconID);
 						//this is to change the icon of the hike that was saved to "filled"
-            // document.getElementById(iconID).innerText = 'bookmark';
+            document.getElementById(iconID).innerText = 'bookmark';
         });
 }
 
+//Removes the bookmarked link from the user's profile
 function removeBookmark(musicLink) {
   currentUser.set({
     bookmarks: firebase.firestore.FieldValue.arrayRemove(musicLink)
     },{
       merge: true
     }).then(function () {
-    console.log("bookmark " + musicLink + "has been deleted for: " + currentUser);
+    console.log("bookmark has been deleted for: " + currentUser);
     var iconID = 'save-' + musicLink;
-    // document.getElementById(iconID).innerText = 'bookmark_border';
+    document.getElementById(iconID).innerText = 'bookmark_border';
     })
   }
+
+
 
 //Uploads new music information into Firestore
 // async function getMusicData() {
