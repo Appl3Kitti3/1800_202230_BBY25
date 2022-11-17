@@ -4,7 +4,7 @@
 //---------------------------------------------------
 function loadSkeleton(){
   console.log($('#navbarPlaceholder').load('../skeletons/navBar.html'));
-  console.log($('.fixed-bottom').load('../skeletons/footer.html'));
+  console.log($('#footerPlaceholder').load('../skeletons/footer.html'));
   console.log($('#navbarMainPlaceholder').load('../skeletons/navBarMain.html'));
   console.log($('#titlePlaceHolder').load('../skeletons/title.html'));
 }
