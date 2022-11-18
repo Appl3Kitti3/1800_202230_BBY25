@@ -76,7 +76,13 @@ function displayCards(collection) {
         let newcard = cardTemplate.content.cloneNode(true);
 
         newcard.querySelector("i").id = "save-" + quote;
-        newcard.querySelector("i").onclick = () => saveBookmark(quote);
+        newcard.querySelector("i").onclick = () => {
+          if (document.querySelector("i").innerText === "bookmark_border") {
+            saveBookmark(quote);
+          } else {
+            removeBookmark(quote);
+          }
+        };
 
         //update title and text and image
         newcard.querySelector(".blockquote").innerHTML = quote;
@@ -131,6 +137,6 @@ function removeBookmark(quote) {
     .then(function () {
       console.log("bookmark " + quote + "has been deleted for: " + currentUser);
       var iconID = "save-" + quote;
-      document.getElementById(iconID).innerText = 'bookmark_border';
+      document.getElementById(iconID).innerText = "bookmark_border";
     });
 }
