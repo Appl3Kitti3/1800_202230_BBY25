@@ -3,12 +3,15 @@ function getData() {
     switch (category) {
         case "Animal Memes":
             console.log("Hello!");
+            document.getElementById("category-name").innerHTML = "Animal Memes";
             animalMemes();
             break;
         case "Comics":
+            document.getElementById("category-name").innerHTML = "Comics";    
             comics();
             break;
         case "Others":
+            document.getElementById("category-name").innerHTML = "Others";
             others();
             break;
     }
