@@ -1,0 +1,36 @@
+
+@media screen and (max-width:760px) {
+    
+    #memeCardGroup {
+        grid-template-columns: 45vw 45vw ;
+        row-gap: 1vh;
+        padding: 5%;
+        align-items: center;
+        background-color: wheat;
+        border-radius: 50px;
+        display: grid;
+    }
+}
+@media screen and (min-width: 760px) {
+    #memeCardGroup {
+        grid-template-columns: 18vw 20vw 20vw 20vw 19vw;
+        padding: 1%;
+        border-radius: 50px;
+        row-gap: 1vh;
+        align-items: center;
+        background-color: rgb(245, 222, 179);
+        display: grid;
+    }
+}
+#zoomed {
+    width: 30%;
+}
+#test {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    position:fixed;
+    margin-top: -7%;
+    border: none;
+    padding: 0;
+}

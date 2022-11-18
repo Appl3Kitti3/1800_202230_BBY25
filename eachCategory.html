@@ -49,6 +49,7 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/memes.css" />
+    <link rel="stylesheet" href="./styles/eachCategory.css" />
   </head>
 
   <body class="bg">
@@ -65,16 +66,19 @@
         <h1>Gallery</h1>
       </div>
         <br/><br/>
-        <div class="d-xl-inline-flex p-5 bg-light" >
-          <div id="galleryCardGroup">
-            <template id="galleryCardTemplate">
-              <!-- <a class="catego"> -->
-                <h2 class="category"></h2>
+        <div class="container-fluid float-start" id="memeCardGroup" ></div>
+        <!-- <div class="d-xl-inline-flex p-5 bg-light" > -->
+          <!-- <div id="galleryCardGroup"> -->
+            <template id="memeCardTemplate" >
                 <img class="container" >
-              <!-- </a> -->
-              <!-- </div> -->
             </template>
-          </div>
+            <!-- <template id="zoomedInPicture"> -->
+              <div class="container-fluid" id="test">
+                <!-- <button onclick="" id="x_Button"></button> -->
+                <img class="container" id="zoomed">
+              </div>
+            <!-- </template> -->
+          <!-- </div> -->
       </div>
     <!-- <div id="content">
       <div class="container caption text-center">
@@ -117,9 +121,9 @@
       <!---------------------------------------------->
 
       <!-- Link to scripts of your own -->
-      <!-- <script src="./scripts/script.js"></script> -->
+      <script src="./scripts/eachCategory.js"></script>
       <script src="./scripts/firebaseAPI_TEAM25.js"></script>
       <script src="./scripts/skeleton.js"></script>
-      <script src="./scripts/meme.js"></script>
+      <!-- <script src="./scripts/meme.js"></script> -->
     </body>
 </html>
