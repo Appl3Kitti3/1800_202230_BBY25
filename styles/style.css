@@ -5,10 +5,10 @@
   src: url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 }
 
-@font-face {
+/* @font-face {
   font-family: "Raleway";
   src: url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-}
+} */
 
 @font-face {
   font-family: "Raleway Bold"; 
@@ -19,6 +19,11 @@ nav > h2 {
   font-family: "Dancing Script";
   letter-spacing: 0.1em;
   font-weight: bold;
+}
+
+.fixed-bottom {
+  height: 9%;
+  padding: 0.65%;
 }
 
 body {
@@ -40,8 +45,6 @@ svg {
   width: 100%;
 }
 @media screen and (max-width: 768px) {
-  h2 {
-    /* text-align: center; */
 
   }
   .playNpause:active {
@@ -69,7 +72,6 @@ svg {
     border-radius: 16px;
   }
 
-}
 @media screen and (min-width: 768px) {
   .timerContainer {
     background-color: rgba(184, 234, 252, 0.677);
@@ -140,11 +142,6 @@ body {
   /* margin-top: -50%; */
   color: black;
   /* background-color: rgba(255, 255, 255, 0.8);  */
-}
-
-h2 {
-  /* float: left; */
-  /* margin-top: -0.2%; */
 }
 
 #footerTest {

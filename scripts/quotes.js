@@ -1,3 +1,14 @@
+var currentUser;
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    currentUser = db.collection("users").doc(user.uid); //global
+    console.log(currentUser);
+  } else {
+    // No user is signed in.
+    console.log("No user is signed in");
+    window.location.href = "login.html";
+  }
+});
 
 // this is a setUp()
 // this code must be called through the console
@@ -13,20 +24,20 @@ async function getCSVdata() {
   const list = data.split("\n").slice(1); //get line
   list.forEach((row) => {
     var tempStr = "";
-    tempStr = row.replace("\"", "");
-    tempStr = tempStr.replace("\",", "~");
-    tempStr = tempStr.replace(",\"", "~");
+    tempStr = row.replace('"', "");
+    tempStr = tempStr.replace('",', "~");
+    tempStr = tempStr.replace(',"', "~");
     // Fun Fact from Teddy, when splitting, replace in between words with uncommon symbols.
-    var columns = tempStr.split("~");  //~ is the only symbol that is not common
+    var columns = tempStr.split("~"); //~ is the only symbol that is not common
 
     // Element 1 = Quotes
     // Element 2 = Author
     // Element 3 = Tags
-    columns[1] = columns[1].replace("\" ","");
-    columns[1] = columns[1].replace("\"","");
-    columns[2] = columns[2].replace("\" ","");
-    columns[2] = columns[2].replace("\"","");
-    
+    columns[1] = columns[1].replace('" ', "");
+    columns[1] = columns[1].replace('"', "");
+    columns[2] = columns[2].replace('" ', "");
+    columns[2] = columns[2].replace('"', "");
+
     // Add list data to firebase
     writeCSVData(columns);
   });
@@ -36,18 +47,18 @@ async function getCSVdata() {
 //   // dont put anything here
 // });
 function writeCSVData(list) {
-  firebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged((user) => {
     // If user logged in or current logged in user
     if (user) {
-        var quotesRef = db.collection("quotes");
-        quotesRef.add({
-          quote: list[0],
-          // AUTHOR AND BOOK
-          author: list[1],
-          tags: list[2]
-        })
+      var quotesRef = db.collection("quotes");
+      quotesRef.add({
+        quote: list[0],
+        // AUTHOR AND BOOK
+        author: list[1],
+        tags: list[2],
+      });
     }
-  }) 
+  });
 }
 
 function displayCards(collection) {
@@ -63,6 +74,15 @@ function displayCards(collection) {
         var author = doc.data().author; // get value of the "author" key
 
         let newcard = cardTemplate.content.cloneNode(true);
+
+        newcard.querySelector("i").id = "save-" + quote;
+        newcard.querySelector("i").onclick = () => {
+          if (document.querySelector("i").innerText === "bookmark_border") {
+            saveBookmark(quote);
+          } else {
+            removeBookmark(quote);
+          }
+        };
 
         //update title and text and image
         newcard.querySelector(".blockquote").innerHTML = quote;
@@ -82,3 +102,41 @@ function displayCards(collection) {
 }
 
 displayCards("quotes");
+
+// console.log(currentUser);
+
+function saveBookmark(quote) {
+  currentUser
+    .set(
+      {
+        bookmarks: firebase.firestore.FieldValue.arrayUnion(quote),
+      },
+      {
+        merge: true,
+      }
+    )
+    .then(function () {
+      console.log("bookmark has been saved for: " + currentUser);
+      var iconID = "save-" + quote;
+      //console.log(iconID);
+      //this is to change the icon of the hike that was saved to "filled"
+      document.getElementById(iconID).innerText = "bookmark";
+    });
+}
+
+function removeBookmark(quote) {
+  currentUser
+    .set(
+      {
+        bookmarks: firebase.firestore.FieldValue.arrayRemove(quote),
+      },
+      {
+        merge: true,
+      }
+    )
+    .then(function () {
+      console.log("bookmark " + quote + "has been deleted for: " + currentUser);
+      var iconID = "save-" + quote;
+      document.getElementById(iconID).innerText = "bookmark_border";
+    });
+}
