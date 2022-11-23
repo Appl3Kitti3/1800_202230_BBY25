@@ -11,3 +11,7 @@
 i {
   float: right;
 }
+
+.navbar {
+  display: none;
+}
