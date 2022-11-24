@@ -45,8 +45,8 @@ body {
 button[disabled]:active {
   background-color: transparent;
 }
-svg {
-  width: 100%;
+.timerIcons {
+  width: 100% !important;
 }
 
 .playNpause:active {
