@@ -24,7 +24,14 @@ function populateCardsDynamically() {
   let musicCardGroup = document.getElementById("musicCardGroup");
 
   
-  db.collection("music").get()
+
+  
+  db.collection("music")
+  .where("tags", "array-contains", "jazz")        //NEW LINE;  what do you want to sort by?
+        // .limit(2)                       //NEW LINE:  how many do you want to get?
+        .get()
+
+
     .then(allMusic => {
       allMusic.forEach(doc => {
         
@@ -147,8 +154,9 @@ function setBookmarkIcon(user) {
           size = snap.size;
           queryData = snap.docs;
           if (size == 1) {
+          if(document.getElementById("save-" + thisMusicID)){
           document.getElementById("save-" + thisMusicID).innerHTML = 'bookmark';
-          
+          }
           }
           else {
             console.group("Query has more than one data")
