@@ -142,8 +142,8 @@ body {
   background-color: rgb(255, 255, 255, 0.5);
   backdrop-filter: blur(14px);
   box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
-  color: black;
-  display: none;
+  color: #047FA4;
+  /* display: none; */
   /* color: #2C9FF5; */
   /* display: flex;
   align-items: center; */
@@ -251,5 +251,6 @@ input[type="number"] {
   background-color: rgb(255, 255, 255, 0.5);
   backdrop-filter: blur(14px);
   box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+  color: #047FA4;
 }
 
