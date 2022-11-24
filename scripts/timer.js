@@ -12,6 +12,7 @@ firebase.auth().onAuthStateChanged(user => {
       } else {
         console.log("Collection not found, setting up...")
         setUp();
+        setUpDurations();
       }
     })
     console.log("User " + user.uid + " logged on!");
@@ -167,6 +168,10 @@ function loop(id,timer) {
  */
 function startTimer(id) {
   let play = document.getElementById("play" + id);
+  let nameElementParent = play.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[0];
+  if (nameElementParent.childNodes.length == 1) {
+    getData('users');
+  }
   play.setAttribute("disabled","");
   play.setAttribute("style","width: 50px;");
 
@@ -261,16 +266,19 @@ function getData(collection) {
             }
           })
         })
-        document.getElementById("deadline1").innerHTML= '<button onclick="changeToButton(\'1\')">' + printZero(deadLine.getHours()) + ':' + printZero(deadLine.getMinutes()) + ':' + printZero(deadLine.getSeconds()) + '</button>'
-        document.getElementById("deadline2").innerHTML= '<button onclick="changeToButton(\'2\')">' + printZero(deadLine1.getHours()) + ':' + printZero(deadLine1.getMinutes()) + ':' + printZero(deadLine1.getSeconds()) + '</button>'
-        document.getElementById("deadline3").innerHTML= '<button onclick="changeToButton(\'3\')">' + printZero(deadLine2.getHours()) + ':' + printZero(deadLine2.getMinutes()) + ':' + printZero(deadLine2.getSeconds()) + '</button>'
-        document.getElementById("deadline4").innerHTML= '<button onclick="changeToButton(\'4\')">' + printZero(deadLine3.getHours()) + ':' + printZero(deadLine3.getMinutes()) + ':' + printZero(deadLine3.getSeconds()) + '</button>'
+
     } else {
         // No user is signed in.
     }
   });
 }
 
+function setUpDurations() {
+  document.getElementById("deadline1").innerHTML= '<button onclick="changeToButton(\'1\')">' + printZero(deadLine.getHours()) + ':' + printZero(deadLine.getMinutes()) + ':' + printZero(deadLine.getSeconds()) + '</button>'
+  document.getElementById("deadline2").innerHTML= '<button onclick="changeToButton(\'2\')">' + printZero(deadLine1.getHours()) + ':' + printZero(deadLine1.getMinutes()) + ':' + printZero(deadLine1.getSeconds()) + '</button>'
+  document.getElementById("deadline3").innerHTML= '<button onclick="changeToButton(\'3\')">' + printZero(deadLine2.getHours()) + ':' + printZero(deadLine2.getMinutes()) + ':' + printZero(deadLine2.getSeconds()) + '</button>'
+  document.getElementById("deadline4").innerHTML= '<button onclick="changeToButton(\'4\')">' + printZero(deadLine3.getHours()) + ':' + printZero(deadLine3.getMinutes()) + ':' + printZero(deadLine3.getSeconds()) + '</button>'
+}
 /**
  * Updates firebase timer name.
  * @param {*} timerNum number of the timer
@@ -279,11 +287,16 @@ function getData(collection) {
 function writeNameData(timerNum, name) {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      console.log(user.uid);
       db.collection('users').doc(user.uid).collection('timers').doc("Timers " + timerNum).update({
         name: name
+      }).then(function () {
+        console.log(name);
       })
+    } else {
+
     }
-  })
+  });
 }
 
 /**
@@ -337,8 +350,8 @@ function setUp() {
  */
 function changeToInput_Name(element,timerID) {
   element.removeAttribute('onclick');
-  element.innerHTML = '<input type="text" class="changeName" id="' + location + '"/>';
+  element.innerHTML = '<input type="text" class="changeName" id="' + "TimerName" + (timerID) + '"/>';
   element.oninput = function () {
-    writeNameData(timerID,document.getElementById(timerID).value);
+    writeNameData(timerID,document.getElementById("TimerName" + (timerID)).value);
   }
 }
