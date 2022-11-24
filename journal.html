@@ -22,6 +22,11 @@
       crossorigin="anonymous"
     />
 
+    <!-- HTML2CANVAS CDN -->
+    <script src=
+      "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js">
+    </script>
+
     <!-- Boostrap Library JS CDN  go here -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -48,7 +53,6 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/main.css" />
   </head>
 
   <body class="bg">
@@ -60,85 +64,63 @@
 
     <!--Start landing page section-->
     <div id="content">
-      <div class="container caption text-center">
-        <h1>
-          Good <span id="time-placeholder">Morning/Night/Afternoon</span>,
-          <span id="username-placeholder">User</span>
-        </h1>
-      </div>
+      <br/>
+      <br/>
+      <br/>
+      <div class="container-xxl">
+        <div>
+          <section>
+            <h5>OwO Rawr</h5>
+            ListOfNotes
+            <p id="my-doc">Cute Furry</p>
+            <p id="ter"></p>
+            <template id="journalTemplates">
+              <h5 class="title"></h5>
+              <p class="journalPreview"></p>
+              <br/>  
+            </template>
+          </section>
+        </div>
+        <div>
+          <section id="bigSteppy">
+            <h3>OwO</h3>
 
-      <div class="row">
+            <label for="save">Save</label>
+            <input type="button" name="save" id="save" value="Save"/>
+            <textarea class="journal active" title="journal" placeholder="Type anything to start writing">what the </textarea>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="content">
+      <div class="container caption text-center">
+        <h1>Hello</h1>
+      </div> -->
+
+      <!-- <div class="row">
         <div class="col-sm-6">
-          <div class="card text-center border-0 bg-transparent">
+          <div class="card text-center">
             <div class="card-body">
               <h5 class="card-title">Music Library</h5>
               <p class="card-text">
-                Browse our library of calming music to sit back and relax to as
-                you go about your day!
+                Browse our library of calming music to sit back and relax to as you go about your day!
               </p>
-              <a href="./music.html" target="_blank" class="btn"
-                >Browse Music</a
-              >
+              <a href="./music.html" target="_blank" class="btn btn-primary">Browse Music</a>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card text-center border-0 bg-transparent">
+          <div class="card text-center">
             <div class="card-body">
               <h5 class="card-title">Focus Timers</h5>
               <p class="card-text">
-                Use our timers to help you focus on what needs to be done for a
-                specific amount of time.
+                Use our timers to help you focus on what needs to be done for a specific amount of time. 
               </p>
-              <a href="./timer.html" target="_blank" class="btn">Use Timers</a>
+              <a href="./timer.html" target="_blank" class="btn btn-primary">Use Timers</a>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="card text-center border-0 bg-transparent">
-            <div class="card-body">
-              <h5 class="card-title">Quote Library</h5>
-              <p class="card-text">
-                Placeholder Text
-              </p>
-              <a href="./quotes.html" target="_blank" class="btn">Read Quotes</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card text-center border-0 bg-transparent">
-            <div class="card-body">
-              <h5 class="card-title">Gallery</h5>
-              <p class="card-text">
-                Placeholder Text
-              </p>
-              <a href="./gallery.html" target="_blank" class="btn">View Gallery</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card text-center border-0 bg-transparent">
-            <div class="card-body">
-              <h5 class="card-title">Journal</h5>
-              <p class="card-text">
-                Placeholder Text
-              </p>
-              <a href="./journal.html" target="_blank" class="btn">Write Journal</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card text-center border-0 bg-transparent">
-            <div class="card-body">
-              <h5 class="card-title">Saved Content</h5>
-              <p class="card-text">
-                Placeholder Text
-              </p>
-              <a href="./saved.html" target="_blank" class="btn">Revisit Favourites</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div> -->
 
       <div id="footerPlaceholder"></div>
 
@@ -149,9 +131,8 @@
       <!-- Link to scripts of your own -->
       <!-- <script src="./scripts/script.js"></script> -->
     </div>
-    <!-- <script src="./scripts/timer.js"></script> -->
     <script src="./scripts/firebaseAPI_TEAM25.js"></script>
+    <script src="./scripts/journal.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/main.js"></script>
   </body>
 </html>

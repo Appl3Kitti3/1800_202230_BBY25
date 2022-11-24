@@ -1,6 +1,9 @@
 var currentUser;
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        populateCardsDynamically();
+        setBookmarkIcon(user);
+
         currentUser = db.collection("users").doc(user.uid);   //global
         console.log(currentUser);
 
@@ -34,19 +37,25 @@ function populateCardsDynamically() {
         
         testMusicCard.querySelector('a').onclick = () => setMusicData(videoId);
         testMusicCard.querySelector('i').id = 'save-' + videoId;
+        // testMusicCard.getElementById(`save-${videoId}`).addEventListener('click', toggleBookmark, false);
         testMusicCard.querySelector('i').onclick = () => {
-          if (document.querySelector('i').innerText === 'bookmark_border') {
+          if (document.querySelector('i').innerHTML === 'bookmark_border') {
           saveBookmark(videoId);
+          console.log(document.querySelector('i').innerHTML)
           } else {
           removeBookmark(videoId);
-          }};
+          console.log(document.querySelector('i').innerHTML + 'a')
+          }
+          
+          };
+          
+        
         testMusicCard.querySelector('.card-img-top').src = thumbnail;
         musicCardGroup.appendChild(testMusicCard);
       })
 
     })
 }
-populateCardsDynamically();
 
 function setMusicData(id){
             localStorage.setItem ('videoId', id);
@@ -63,13 +72,13 @@ function saveBookmark(musicLink) {
             console.log("bookmark has been saved for: " + currentUser);
             var iconID = 'save-' + musicLink;
             //console.log(iconID);
-						//this is to change the icon of the hike that was saved to "filled"
             document.getElementById(iconID).innerText = 'bookmark';
         });
 }
 
 //Removes the bookmarked link from the user's profile
 function removeBookmark(musicLink) {
+console.log(musicLink);
   currentUser.set({
     bookmarks: firebase.firestore.FieldValue.arrayRemove(musicLink)
     },{
@@ -84,39 +93,68 @@ function removeBookmark(musicLink) {
 
 
 //Uploads new music information into Firestore
-// async function getMusicData() {
-//   const response = await fetch("./playlistItems.json");
-//   const data = await response.text();
-//   let parsedData = JSON.parse(data);
-//   console.log(parsedData);
+async function getMusicData() {
+  const response = await fetch("./playlistItems.json");
+  const data = await response.text();
+  let parsedData = JSON.parse(data);
+  console.log(parsedData);
 
-//   for (let i = 0; i < parsedData.length; i++) {
-//     let item = parsedData[i];
-//     let musicTitle = item["snippet"]["title"];
-//     console.log(musicTitle);
+  for (let i = 0; i < parsedData.length; i++) {
+    let item = parsedData[i];
+    let musicTitle = item["snippet"]["title"];
+    console.log(musicTitle);
 
-//     let thumbnailImg = item["snippet"]["thumbnails"]["medium"]["url"];
-//     console.log(thumbnailImg);
-//     let musicId = item["snippet"]["resourceId"]["videoId"];
-//     console.log(musicId);
+    let thumbnailImg = item["snippet"]["thumbnails"]["medium"]["url"];
+    console.log(thumbnailImg);
+    let musicId = item["snippet"]["resourceId"]["videoId"];
+    console.log(musicId);
 
     
-//     function writeMusicData() {
-//       firebase.auth().onAuthStateChanged(user => {
+    function writeMusicData() {
+      firebase.auth().onAuthStateChanged(user => {
 
-//         if (user) {
-//           var musicRef = db.collection("music");
-//           musicRef.add({
-//             title: musicTitle,
-//             thumbnail: thumbnailImg,
-//             videoId: musicId
-//             })
-//             }
-//             })
-//             }
-//             writeMusicData();
+        if (user) {
+          var musicRef = db.collection("music");
+          musicRef.add({
+            title: musicTitle,
+            thumbnail: thumbnailImg,
+            videoId: musicId
+            })
+            }
+            })
+            }
+            writeMusicData();
     
-//     }
-//   }
+    }
+  }
 
   // getMusicData();
+
+function setBookmarkIcon(user) {
+  db.collection("users").doc(user.uid).get()
+
+    .then(userDoc => {
+
+      var musicBookmarks = userDoc.data().bookmarks;
+      // console.log(musicBookmarks);
+      
+
+
+      musicBookmarks.forEach(thisMusicID => {
+        console.log(thisMusicID);
+        
+        db.collection("music").where("videoId", "==", thisMusicID).get().then(snap => {
+          size = snap.size;
+          queryData = snap.docs;
+          if (size == 1) {
+          document.getElementById("save-" + thisMusicID).innerHTML = 'bookmark';
+          
+          }
+          else {
+            console.group("Query has more than one data")
+          }
+        })
+      });
+    })
+}
+
