@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Raleway:wght@400;600&display=swap');
 
+@import "compass/css3";
+
 @font-face {
   font-family: "Dancing Script";
   src: url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -163,6 +165,25 @@ body {
   border-radius: 8px;
   border-color: #047FA4;
   /* background-color: #047FA4; */
+  transform: scale(1);
+  animation: pulse-white 2s infinite;
+}
+
+@keyframes pulse-white {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
 }
 
 #button1:hover {
@@ -171,6 +192,7 @@ body {
   color: white;
   /* color: #047FA4;
   background-color: white; */
+  animation: none;
 }
 
 #footerTest {
