@@ -9,3 +9,6 @@ function loadSkeleton(){
   console.log($('#titlePlaceHolder').load('../skeletons/title.html'));
 }
 loadSkeleton();  //invoke the function
+function logOut() {
+  localStorage.removeItem("userID");
+}
