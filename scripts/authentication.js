@@ -66,7 +66,7 @@ var uiConfig = {
   privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 
-if (localStorage.getItem("userID") !== null) {
+if (window.localStorage.getItem("userID") != null) {
   window.location.assign("main.html");
 } else {
   ui.start('#firebaseui-auth-container', uiConfig);
