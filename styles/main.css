@@ -1,0 +1,12 @@
+.btn {
+  color: #047fa4;
+  border-radius: 8px;
+  border-color: #047fa4;
+}
+
+.btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #047FA4;
+  color: white;
+  animation: none;
+}
