@@ -1,6 +1,7 @@
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
+// localStorage.getItem("userID");
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
@@ -36,6 +37,7 @@ var uiConfig = {
                   console.log("Error adding new user: " + error);
               });
       } else {
+          localStorage.setItem("userID", user.uid);
           return true;
       }
       return false;
@@ -64,4 +66,8 @@ var uiConfig = {
   privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 
-ui.start('#firebaseui-auth-container', uiConfig);
+if (localStorage.getItem("userID") !== null) {
+  window.location.assign("main.html");
+} else {
+  ui.start('#firebaseui-auth-container', uiConfig);
+}

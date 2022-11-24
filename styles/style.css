@@ -51,11 +51,11 @@ svg {
 
 .playNpause:active {
   background-color: cadetblue;
-  width: 15%;
+  width: 30%;
 }
 
 .playNpause {
-  width: 18%;
+  width: 30%;
 
   display: inline-flex;
   /* position: absolute; */
