@@ -1,0 +1,39 @@
+.music-card {
+  background-color: #fefefe8a;
+  margin: 1em auto;
+  padding: 0;
+  width: 40%;
+}
+
+.play-button svg{
+  text-decoration: none;
+  margin: 0 auto;
+}
+
+.card-body {
+color: black;
+opacity: 100%;
+}
+
+.card-text {
+font-size: 14pt;
+}
+
+.card-body a {
+  text-decoration: none;
+  color: black;
+  font-size: 28px;
+}
+
+i {
+  float: right;
+  font-size: 24px;}
+
+@media only screen and (max-width: 768px) {
+
+  .music-card {
+    width: 80%;
+  }
+}
+
+

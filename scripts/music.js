@@ -84,39 +84,39 @@ function removeBookmark(musicLink) {
 
 
 //Uploads new music information into Firestore
-// async function getMusicData() {
-//   const response = await fetch("./playlistItems.json");
-//   const data = await response.text();
-//   let parsedData = JSON.parse(data);
-//   console.log(parsedData);
+async function getMusicData() {
+  const response = await fetch("./playlistItems.json");
+  const data = await response.text();
+  let parsedData = JSON.parse(data);
+  console.log(parsedData);
 
-//   for (let i = 0; i < parsedData.length; i++) {
-//     let item = parsedData[i];
-//     let musicTitle = item["snippet"]["title"];
-//     console.log(musicTitle);
+  for (let i = 0; i < parsedData.length; i++) {
+    let item = parsedData[i];
+    let musicTitle = item["snippet"]["title"];
+    console.log(musicTitle);
 
-//     let thumbnailImg = item["snippet"]["thumbnails"]["medium"]["url"];
-//     console.log(thumbnailImg);
-//     let musicId = item["snippet"]["resourceId"]["videoId"];
-//     console.log(musicId);
+    let thumbnailImg = item["snippet"]["thumbnails"]["medium"]["url"];
+    console.log(thumbnailImg);
+    let musicId = item["snippet"]["resourceId"]["videoId"];
+    console.log(musicId);
 
     
-//     function writeMusicData() {
-//       firebase.auth().onAuthStateChanged(user => {
+    function writeMusicData() {
+      firebase.auth().onAuthStateChanged(user => {
 
-//         if (user) {
-//           var musicRef = db.collection("music");
-//           musicRef.add({
-//             title: musicTitle,
-//             thumbnail: thumbnailImg,
-//             videoId: musicId
-//             })
-//             }
-//             })
-//             }
-//             writeMusicData();
+        if (user) {
+          var musicRef = db.collection("music");
+          musicRef.add({
+            title: musicTitle,
+            thumbnail: thumbnailImg,
+            videoId: musicId
+            })
+            }
+            })
+            }
+            writeMusicData();
     
-//     }
-//   }
+    }
+  }
 
   // getMusicData();
