@@ -21,6 +21,10 @@
       crossorigin="anonymous"
     />
 
+    <!-- Google. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" /> -->
+
     <!-- Boostrap Library JS CDN  go here -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -69,16 +73,9 @@
             <br/>
 
             <button class="playNpause" id="play1" onclick="startTimer('1')">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-play-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
-                />
-              </svg>
+              <span class="material-symbols-sharp timerIcons">
+play_arrow
+</span>
             </button>
             <button
               class="playNpause"
@@ -86,16 +83,9 @@
               disabled
               onclick="stopTimer('1')"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-pause-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
-                />
-              </svg>
+            <span class="material-symbols-sharp timerIcons">
+              pause
+              </span>
             </button>
           </h2>
         </div>
@@ -110,16 +100,9 @@
           <h2>
             <span id="deadline2"></span><br />
             <button class="playNpause" id="play2" onclick="startTimer('2')">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-play-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
-                />
-              </svg>
+              <span class="material-symbols-sharp timerIcons">
+                play_arrow
+                </span>
             </button>
             <button
               class="playNpause"
@@ -127,16 +110,9 @@
               disabled
               onclick="stopTimer('2')"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-pause-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
-                />
-              </svg>
+            <span class="material-symbols-sharp timerIcons">
+              pause
+              </span>
             </button>
           </h2>
         </div>
@@ -147,16 +123,9 @@
           <h2>
             <span id="deadline3"></span><br />
             <button class="playNpause" id="play3" onclick="startTimer('3')">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-play-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
-                />
-              </svg>
+              <span class="material-symbols-sharp timerIcons">
+                play_arrow
+                </span>
             </button>
             <button
               class="playNpause"
@@ -164,16 +133,9 @@
               disabled
               onclick="stopTimer('3')"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-pause-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
-                />
-              </svg>
+            <span class="material-symbols-sharp timerIcons">
+              pause
+              </span>
             </button>
           </h2>
         </div>
@@ -186,16 +148,9 @@
           <h2>
             <span id="deadline4"></span><br />
             <button class="playNpause" id="play4" onclick="startTimer('4')">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-play-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
-                />
-              </svg>
+              <span class="material-symbols-sharp timerIcons">
+                play_arrow
+                </span>
             </button>
             <button
               class="playNpause"
@@ -203,16 +158,9 @@
               disabled
               onclick="stopTimer('4')"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-pause-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
-                />
-              </svg>
+            <span class="material-symbols-sharp timerIcons">
+              pause
+              </span>
             </button>
           </h2>
         </div>
