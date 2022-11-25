@@ -16,9 +16,6 @@
   font-family: "Raleway Bold"; 
   src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
 }
-#counterParagraph {
-  color: red !important;
-}
 nav > h2 {
   font-family: "Dancing Script";
   letter-spacing: 0.1em;
@@ -300,4 +297,7 @@ input[type="number"] {
     height: 30em;
     width: 100%;
   }
+}
+#counterParagraph {
+  text-align: center;
 }
