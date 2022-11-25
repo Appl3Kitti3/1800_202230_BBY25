@@ -16,7 +16,9 @@
   font-family: "Raleway Bold"; 
   src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
 }
-
+#counterParagraph {
+  color: red !important;
+}
 nav > h2 {
   font-family: "Dancing Script";
   letter-spacing: 0.1em;
@@ -280,18 +282,14 @@ input[type="number"] {
 /* Journal.html */
 
 .container-xxl {
-  background-color: wheat;
-  display: grid;
-}
-#save {
-  display: none;
+  text-align: center;
 }
 
+
+#titleHeading {
+  font-weight: bold;
+}
 @media screen and (max-width: 768px) {
-  .container-xxl {
-    grid-template-columns: 35vw 50vw;  
-  }
-
   textarea {
     height: 45em;
     width: 25em;
@@ -299,13 +297,9 @@ input[type="number"] {
 }
 
 @media screen and (min-width: 768px) {
-  .container-xxl {
-    grid-template-columns: 15vw 85vw;
-  }
 
   textarea {
-    height: 45em;
-    width: 50em;
+    height: 30em;
+    width: 100%;
   }
 }
-

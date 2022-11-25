@@ -51,8 +51,9 @@ function initalize() {
 
     updateName("deadline" + i, element);
     changeToButton(i);
+    getTimeTracker();
     i++;
-  }); 
+  });
 }
 
 /**
@@ -147,6 +148,8 @@ function updateName(id,timer) {
   document.getElementById(id).innerHTML= '<button onclick="changeToButton(\'' + id.charAt(id.length - 1) + '\')">' + printZero(timer.getHours()) + ':' + printZero(timer.getMinutes()) + ':' + printZero(timer.getSeconds()) + '</button>'    
 }
 
+var strCounter = "";
+var currentCounter = [0,0,0];
 /**
  * Updates the HTML every second.
  * @param {*} id of the HTML element
@@ -159,7 +162,53 @@ function loop(id,timer) {
     getData('users'); 
     alert("A timer is finished!");
     stopTimer(id);
+    setTimeTracker(id);
+    getTimeTracker(id);
+
+    console.log("" + timer.getHours() + timer.getMinutes() + timer.getSeconds());
   }
+}
+
+
+/**
+ * Get timer tracker.
+ */
+function getTimeTracker(id) {
+    let counter01 = db.collection('users').doc(localStorage.getItem('userID')).collection('timers');
+    counter01.doc("Counter").get().then(counterDoc => {
+      var counterArray1 = counterDoc.data().counter.split(":");
+      if (parseInt(counterArray1[2]) >= 60) {
+        counterArray1[2] = 0;
+        counterArray1[1] = "" + parseInt(counterArray1[1]) + 1;
+      }
+      if (parseInt(counterArray1[1]) >= 60) {
+        counterArray1[1] = 0;
+        counterArray1[0] = "" + parseInt(counterArray1[0]) + 1;
+      }
+      currentCounter[0] = parseInt(counterArray1[0]);
+      currentCounter[1] = parseInt(counterArray1[1]);
+      currentCounter[2] = parseInt(counterArray1[2]);
+      strCounter = currentCounter[0] + "h " + currentCounter[1] + "m " + currentCounter[2] + "s ";
+      document.getElementById("totalCounter").innerHTML = strCounter;
+    })
+}
+
+function setTimeTracker(id) {
+  db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Timers " + id).get().then(doc => {
+    var counterArray = doc.data().duration.split(":");
+    if (parseInt(counterArray[2]) >= 60) {
+      counterArray[1] = parseInt(counterArray[1]) + 1;
+    }
+    if (parseInt(counterArray[1]) >= 60) {
+      counterArray[0] = parseInt(counterArray[0]) + 1;
+    }
+    currentCounter[0]+=parseInt(counterArray[0]);
+    currentCounter[1]+=parseInt(counterArray[1]);
+    currentCounter[2]+=parseInt(counterArray[2]);
+    strCounter = currentCounter[0] + "h " + currentCounter[1] + "m " + currentCounter[2] + "s ";
+    document.getElementById("totalCounter").innerHTML = strCounter;
+    writeCounterData(id, (`${currentCounter[0]}:${currentCounter[1]}:${currentCounter[2]}`));
+  })
 }
 
 /**
@@ -176,6 +225,7 @@ function startTimer(id) {
   play.setAttribute("style","width: 50px;");
 
   document.getElementById("pause" + id).removeAttribute("disabled");
+  
   switch ("deadline" + id) {
     case "deadline1":
       console.log("DeadLine 1 is at go");
@@ -239,6 +289,7 @@ function changeTimerName(array) {
   }
 }
 
+
 /**
  * Collects data from firebase.
  * @param {*} collection name of the database
@@ -253,16 +304,20 @@ function getData(collection) {
         var test = [];
         db.collection(collection).doc(user.uid).collection('timers').get().then(snap => {
           snap.forEach(doc => {
-            test.push(doc.data().name);
-            durationList = doc.data().duration.split(":");
+            if (doc.id == "Counter") {
 
-            setDuration(parseInt(durationList[0]),"hour",i);
-            setDuration(parseInt(durationList[1]),"minute",i);
-            setDuration(parseInt(durationList[2]),"second",i);
-        
-            i++;
-            if (i == 5) {
-              changeTimerName(test);
+            } else {
+              test.push(doc.data().name);
+              durationList = doc.data().duration.split(":");
+  
+              setDuration(parseInt(durationList[0]),"hour",i);
+              setDuration(parseInt(durationList[1]),"minute",i);
+              setDuration(parseInt(durationList[2]),"second",i);
+          
+              i++;
+              if (i == 5) {
+                changeTimerName(test);
+              }
             }
           })
         })
@@ -305,25 +360,29 @@ function writeNameData(timerNum, name) {
  * @param {*} duration of the timer. (00 : 00 : 00 as String)
  */
 function writeData(timerNum, duration) {
-  firebase.auth().onAuthStateChanged(user => {
-    // Check if a user is signed in:
-    if (user) {
-        // Do something for the currently logged-in user here: 
-        db.collection('users').doc(user.uid).collection('timers').doc("Timers " + timerNum).update({
-          duration: duration
-        }).then(function () {
-          console.log("Duration changed!");
-        })
-        
-        //method #1:  insert with html only
-        //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
-        //method #2:  insert using jquery
-    } else {
-        // No user is signed in.
-    }
-  });
+  db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Timers " + timerNum).update({
+    duration: duration
+  }).then(function () {
+    console.log("Duration changed!");
+  })
+  
+  //method #1:  insert with html only
+  //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
+  //method #2:  insert using jquery
 }
 
+/**
+ * Writes counter data.
+ * @param {*} timerNum as int
+ * @param {*} counterDuration as String 
+ */
+function writeCounterData(timerNum, counterDuration) {
+  db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Counter").update({
+    counter: counterDuration
+  }).then(function () {
+    console.log("Counter recorded!");
+  })
+}
 /**
  * Creates a sub collection of Timers.
  */
@@ -335,8 +394,12 @@ function setUp() {
         timersRef.set({
           name: "Timers " + i,
           duration: "0:0:0"
-        })
+        });
       }
+      var counterRef = db.collection('users').doc(user.uid).collection('timers').doc("Counter");
+      counterRef.set({
+        counter: "0:0:0"
+      });
     }
   })
 }

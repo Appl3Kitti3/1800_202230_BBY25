@@ -2,37 +2,36 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = user;
         setUp(user);
-        ready();
+        getJournalContent();
         saveJournal();
     } else {
 
     }
 })
 
+// Efficient setup method
 /**
- * Takes snap shot atm.
+ * if (localStorage.getItem('userID') != null) {
+ * }
  */
-function ready() {
-    const screenShotTarget = document.getElementById('my-doc');
-
-    html2canvas(screenShotTarget).then((canvas) => {
-        document.getElementById('ter').appendChild(canvas);
-        // const base64image = canvas.toDataURL("image/png");
-        // window.location.href = base64image;
-    })
-}
 
 /**
  * Saves journal.
  */
 function saveJournal() {
+    // changing the query selector to getElementbyID.
     document.querySelector(".journal.active").parentNode.childNodes[3].addEventListener("click", function() {
-        var journalText = this.parentNode.childNodes[7].value;
-        let journalDoc = db.collection('users').doc(currentUser.uid).collection('journals').doc("Test Document");
-        journalDoc.set({
-            title: "Test Document",
+        var journalText = this.parentNode.childNodes[5].value; // Input value
+        let journalDoc = db.collection('users').doc(currentUser.uid).collection('journals').doc("My Journal");
+        journalDoc.update({
             description: journalText
         })
+    })
+}
+
+function getJournalContent() {
+    db.collection('users').doc(localStorage.getItem('userID')).collection('journals').doc("My Journal").get().then(text => {
+        document.getElementById("journalInput").innerHTML = text.data().description;
     })
 }
 
@@ -56,9 +55,10 @@ function setUp(user) {
  * @param {*} id as String 
  */
 function createExampleDocument(id) {
-    let exampleDocument = db.collection('users').doc(id).collection('journals').doc('Example Document');
+    let exampleDocument = db.collection('users').doc(id).collection('journals').doc('My Journal');
+    // This is the main document which is automatically provided for the user.
     exampleDocument.set({
-        title: "Example Document",
-        description: "This is a journal"
+        title: "My Journal",
+        description: "This is a journal!"
     })
 }
