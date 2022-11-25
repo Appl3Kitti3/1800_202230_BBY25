@@ -1,12 +1,31 @@
 .btn {
-  color: #047fa4;
+  color: white;
   border-radius: 8px;
   border-color: #047fa4;
+  background-color: #047FA4;
 }
 
 .btn:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #047fa4;
+  background-color: #3BA9EA;
   color: white;
   animation: none;
+}
+
+.card-body {
+  /* background-color: #3CBCEC;
+  backdrop-filter: blur(14px);
+  border-radius: 8px; */
+}
+
+h5 {
+  color: #047FA4;
+  text-shadow: white 1px 0 10px;
+  font-size: 20pt;
+}
+
+.card-body > p {
+  color: #047FA4;
+  text-shadow: white 1px 0 10px;
+  font-size: 16pt;
 }
