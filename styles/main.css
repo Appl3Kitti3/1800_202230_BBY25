@@ -13,10 +13,11 @@
 }
 
 .card-body {
-  /* background-color: #3CBCEC;
-  backdrop-filter: blur(14px);
-  border-radius: 8px; */
+  background-color: #fefefe8a;
+  background-size: cover;
+  border-radius: 8px;
 }
+
 
 h5 {
   color: #047FA4;
