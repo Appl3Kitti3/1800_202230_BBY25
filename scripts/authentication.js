@@ -24,12 +24,6 @@ var uiConfig = {
                   country: "Canada",                      //optional default profile info      
                   school: "BCIT"                          //optional default profile info
               }).then(function () {
-                for (var i = 1; i <= 4;i++) {
-                  db.collection("users").doc(user.uid).collection("timers").doc("Timer" + i).set({
-                    name: "Timer " + i,
-                    duration: "00:00:00"
-                  })
-                }
                   console.log("New user added to firestore");
                   window.location.assign("main.html");       //re-direct to main.html after signup
               })

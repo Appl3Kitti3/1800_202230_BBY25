@@ -175,7 +175,7 @@ function loop(id,timer) {
  */
 function getTimeTracker(id) {
     let counter01 = db.collection('users').doc(localStorage.getItem('userID')).collection('timers');
-    counter01.doc("Counter").get().then(counterDoc => {
+    counter01.doc("Counter").onSnapshot(counterDoc => {
       var counterArray1 = counterDoc.data().counter.split(":");
       if (parseInt(counterArray1[2]) >= 60) {
         counterArray1[2] = 0;
