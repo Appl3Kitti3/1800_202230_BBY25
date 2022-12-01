@@ -31,13 +31,10 @@ function getBookmarks(user) {
 
       let musicCardTemplate = document.getElementById("musicCardTemplate");
       musicBookmarks.forEach(thisMusicID => {
-        console.log(thisMusicID);
+        // console.log(thisMusicID);
         db.collection("music").where("videoId", "==", thisMusicID).get().then(snap => {
           size = snap.size;
           queryData = snap.docs;
-
-          
-
 
 
           if (size == 1) {
@@ -61,10 +58,7 @@ function getBookmarks(user) {
               }
             };
             testMusicCard.querySelector('.card-img-top').src = thumbnail;
-
-            
             musicCardGroup.appendChild(testMusicCard);
-
           }
           else {
             console.group("Query has more than one data")
