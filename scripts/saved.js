@@ -86,11 +86,11 @@ db.collection("users").doc(user.uid).get()
         let newcard = cardTemplate.content.cloneNode(true);
 
         newcard.querySelector("i").id = "save-" + quote;
+        let elementi = newcard.querySelector("i");
         newcard.querySelector("i").onclick = () => {
-          if (document.querySelector("i").innerText === "bookmark_border") {
-            saveBookmark(quote);
-          } else {
+          if (elementi.innerText == "bookmark") {
             removeBookmark(quote);
+          } else {
           }
         };
 
