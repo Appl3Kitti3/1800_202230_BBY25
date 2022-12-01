@@ -61,10 +61,23 @@
         <h5 class="card-title">placeholder</h5>
         <i class="material-icons" id="add-fave">bookmark_border</i>
         <a class="material-icons" href="music-player.html" id="play-music">play_arrow</a>
-        
       </div>
     </div>
   </template>
+
+  <template id="quoteCardTemplate">
+        <div class="card border-info mb-3">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>something</p>
+            </blockquote>
+            <footer class="blockquote-footer">
+              Some author <cite title="Source Title"></cite>
+            </footer>
+            <i class="material-icons">bookmark_border</i>
+          </div>
+        </div>
+      </template>
 
   <div id="navbarMainPlaceholder"></div>
 
@@ -79,6 +92,7 @@
       </div>
 
      <div id="musicCardGroup" class="row row-cols-2 text-center"></div>
+     <div id="cardContainer"></div>
   </div>
 
 

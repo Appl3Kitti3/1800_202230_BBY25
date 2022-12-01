@@ -62,20 +62,27 @@ function getBookmarks(user) {
 }
 
 function getSavedQuotes(user) {
+db.collection("users").doc(user.uid).get()
 
+  .then(userDoc => {
 
+  var savedQuotes = userDoc.data().bookmarks;
+  console.log(savedQuotes);
   let cardTemplate = document.getElementById("quoteCardTemplate");
   let cardGroup = document.getElementById("cardContainer");
-  db.collection("users").doc(user.uid).get()
-    .then((snap) => {
 
-    var savedQuotes = userDoc.data().bookmarks;
-      //var i = 1;  //if you want to use commented out section
-      db.collection("quote").where("videoId", "==", savedQuotes).get().then(snap => {
-        //iterate thru each doc
-        var quote = doc.data().quote; // get value of the "quote" key
-        var author = doc.data().author; // get value of the "author" key
+  savedQuotes.forEach(item => {
+  console.log(item);
+    db.collection("quotes").where("quote", "==", item).get().then(snap => {
+          size = snap.size;
+          queryData = snap.docs;
 
+
+          if (size == 1) {
+
+        var doc = queryData[0].data();
+        var quote = doc.quote; 
+        var author = doc.author; 
         let newcard = cardTemplate.content.cloneNode(true);
 
         newcard.querySelector("i").id = "save-" + quote;
@@ -100,11 +107,14 @@ function getSavedQuotes(user) {
         //attach to gallery
         cardGroup.appendChild(newcard);
         //i++;   //if you want to use commented out section
+        }
+        else {
+          console.group("Query has more than one data")
+          }
       });
     });
+    })
 }
-
-displayCards("quotes");
 
 
 
