@@ -7,7 +7,7 @@
 function listenMusic() { 
 
 let videoId = localStorage.getItem("videoId");
-var w = window.screen.availWidth;
+var w = window.innerWidth;
 var h = w * (9/16);
 
 let player = musicPlayerTemplate.content.cloneNode(true);

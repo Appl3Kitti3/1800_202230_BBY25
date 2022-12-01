@@ -15,6 +15,18 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
+document.getElementById("search-submit").addEventListener("click", filterMusic);
+
+var keyword;
+
+function filterMusic() {
+    keyword = document.getElementById("search-bar").value;
+    console.log(keyword);
+    document.getElementById('musicCardGroup').innerHTML = "";
+    populateCardsDynamicallyWithSearch(keyword);
+}
+
+
 
 
 
@@ -23,18 +35,51 @@ function populateCardsDynamically() {
   let musicCardTemplate = document.getElementById("musicCardTemplate");
   let musicCardGroup = document.getElementById("musicCardGroup");
 
-  
-
-  
-  db.collection("music")
-  .where("tags", "array-contains", "jazz")        //NEW LINE;  what do you want to sort by?
-        // .limit(2)                       //NEW LINE:  how many do you want to get?
-        .get()
-
+  db.collection("music").get()
 
     .then(allMusic => {
       allMusic.forEach(doc => {
         
+        var musicTitle = doc.data().title; //gets the title field
+        var videoId = doc.data().videoId; //gets Youtube link
+        var thumbnail = doc.data().thumbnail;
+        let testMusicCard = musicCardTemplate.content.cloneNode(true);
+        testMusicCard.querySelector('.card-title').innerHTML = musicTitle;     
+        // testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
+        
+        testMusicCard.querySelector('a').onclick = () => setMusicData(videoId);
+        testMusicCard.querySelector('i').id = 'save-' + videoId;
+        // testMusicCard.getElementById(`save-${videoId}`).addEventListener('click', toggleBookmark, false);
+        testMusicCard.querySelector('i').onclick = () => {
+          if (document.querySelector('i').innerHTML === 'bookmark_border') {
+          saveBookmark(videoId);
+          console.log(document.querySelector('i').innerHTML)
+          } else {
+          removeBookmark(videoId);
+          console.log(document.querySelector('i').innerHTML + 'a')
+          }
+          
+          };
+          
+        
+        testMusicCard.querySelector('.card-img-top').src = thumbnail;
+        musicCardGroup.appendChild(testMusicCard);
+      })
+
+    })
+}
+
+function populateCardsDynamicallyWithSearch() {
+  
+  let musicCardTemplate = document.getElementById("musicCardTemplate");
+  let musicCardGroup = document.getElementById("musicCardGroup");
+
+  db.collection("music")
+  .where("tags", "array-contains", keyword)
+  .get()
+
+    .then(allMusic => {
+      allMusic.forEach(doc => {
         var musicTitle = doc.data().title; //gets the title field
         var videoId = doc.data().videoId; //gets Youtube link
         var thumbnail = doc.data().thumbnail;
@@ -134,6 +179,7 @@ async function getMusicData() {
     
     }
   }
+
 
   // getMusicData();
 
