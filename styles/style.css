@@ -223,10 +223,6 @@ h1 {
   font-size: 28pt;
 }
 
-#description {
-  font-size: 14pt;
-  font-weight: bold;
-}
 input[type="number"] {
   /* padding: 1%; */
   text-align: center;
