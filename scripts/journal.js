@@ -20,9 +20,10 @@ firebase.auth().onAuthStateChanged(user => {
  */
 function saveJournal() {
     // changing the query selector to getElementbyID.
-    document.querySelector(".journal.active").parentNode.childNodes[3].addEventListener("click", function() {
-        var journalText = this.parentNode.childNodes[5].value; // Input value
-        let journalDoc = db.collection('users').doc(currentUser.uid).collection('journals').doc("My Journal");
+    console.log(document.querySelector(".journal.active").parentNode.childNodes[1].childNodes[3]);
+    document.querySelector(".journal.active").parentNode.childNodes[1].childNodes[3].addEventListener("click", function() {
+        var journalText = document.getElementById("journalInput").value; // Input value
+        let journalDoc = db.collection('users').doc(localStorage.getItem('userID')).collection('journals').doc("My Journal");
         journalDoc.update({
             description: journalText
         })
