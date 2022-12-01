@@ -304,3 +304,7 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.material-icons:hover {
+  cursor: pointer;
+}
