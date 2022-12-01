@@ -26,6 +26,14 @@ nav > h2 {
 .fixed-bottom {
   height: 9%;
   padding: 0.65%;
+  background-color: rgb(255, 255, 255, 0.5);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+  color: #047FA4;
+}
+
+.fixed-bottom .container {
+  margin-top: 2%;
 }
 
 body {
@@ -265,16 +273,6 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
-.fixed-bottom {
-  background-color: rgb(255, 255, 255, 0.5);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
-  color: #047FA4;
-}
-
-
-/* Journal.html */
 
 .container-xxl {
   text-align: center;
