@@ -25,6 +25,21 @@ font-size: 14pt;
   font-size: 28px;
 }
 
+.card {
+  background-color: #fefefec0;
+  background-size: cover;
+}
+
+#cardContainer {
+  margin-bottom: 20%;
+}
+
+.blockquote-footer {
+  margin-top: 2%;
+  font-style: italic;
+  font-size: 12pt;
+}
+
 i {
   float: right;
   font-size: 24px;}
