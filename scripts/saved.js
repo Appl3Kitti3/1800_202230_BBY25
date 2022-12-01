@@ -1,18 +1,10 @@
-// firebase.auth().onAuthStateChanged(user => {
-//     if (user) {
-//         getBookmarks(user)
-//         currentUser = db.collection("users").doc(user.uid);   //global
-//         console.log(currentUser);
-//     } else {
-//         console.log("No user is signed in");
-//         window.location.href = "login.html";
-//     }
-// });
+
 
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
       getBookmarks(user);
+      getSavedQuotes(user);
       currentUser = db.collection("users").doc(user.uid);
       console.log(currentUser);
     } else {
@@ -68,6 +60,51 @@ function getBookmarks(user) {
       });
     })
 }
+
+function getSavedQuotes(user) {
+
+
+  let cardTemplate = document.getElementById("quoteCardTemplate");
+  let cardGroup = document.getElementById("cardContainer");
+  db.collection("users").doc(user.uid).get()
+    .then((snap) => {
+
+    var savedQuotes = userDoc.data().bookmarks;
+      //var i = 1;  //if you want to use commented out section
+      db.collection("quote").where("videoId", "==", savedQuotes).get().then(snap => {
+        //iterate thru each doc
+        var quote = doc.data().quote; // get value of the "quote" key
+        var author = doc.data().author; // get value of the "author" key
+
+        let newcard = cardTemplate.content.cloneNode(true);
+
+        newcard.querySelector("i").id = "save-" + quote;
+        newcard.querySelector("i").onclick = () => {
+          if (document.querySelector("i").innerText === "bookmark_border") {
+            saveBookmark(quote);
+          } else {
+            removeBookmark(quote);
+          }
+        };
+
+        //update title and text and image
+        newcard.querySelector(".blockquote").innerHTML = quote;
+        newcard.querySelector(".blockquote-footer").innerHTML = author;
+        // newcard.querySelector(".card-image").src = `./images/${hikeID}.jpg`; //Example: NV01.jpg
+
+        //give unique ids to all elements for future use
+        // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
+        // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
+        // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+
+        //attach to gallery
+        cardGroup.appendChild(newcard);
+        //i++;   //if you want to use commented out section
+      });
+    });
+}
+
+displayCards("quotes");
 
 
 

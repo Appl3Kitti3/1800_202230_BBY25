@@ -80,7 +80,6 @@ function populateCardsDynamicallyWithSearch() {
 
     .then(allMusic => {
       allMusic.forEach(doc => {
-        console.log("populated");
         var musicTitle = doc.data().title; //gets the title field
         var videoId = doc.data().videoId; //gets Youtube link
         var thumbnail = doc.data().thumbnail;
