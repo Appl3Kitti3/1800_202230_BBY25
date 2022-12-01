@@ -6,8 +6,8 @@ body {
 }
 
 #description {
-  background-color: #fefefec0;
-  background-size: cover;
+  /* background-color: #fefefec0;
+  background-size: cover; */
   padding: .5%;
   border-radius: 8px;
   padding-right: calc(var(--bs-gutter-x) * .2);
