@@ -267,6 +267,7 @@ input[type="number"] {
 }
 
 .fixed-bottom {
+  /* position: static !important; */
   background-color: rgb(255, 255, 255, 0.5);
   backdrop-filter: blur(14px);
   box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
@@ -289,6 +290,7 @@ input[type="number"] {
     height: 45em;
     width: 25em;
   }
+
 }
 
 @media screen and (min-width: 768px) {
