@@ -7,11 +7,6 @@
   src: url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 }
 
-/* @font-face {
-  font-family: "Raleway";
-  src: url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-} */
-
 @font-face {
   font-family: "Raleway Bold"; 
   src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
@@ -41,7 +36,6 @@ body {
   overflow-x: hidden;
   font-family: "Raleway";
   font-weight: 600;
-  /* color: #7C7C7C; */
 }
 
 .playNpause {
@@ -63,10 +57,7 @@ button[disabled]:active {
 
 .playNpause {
   width: 30%;
-
   display: inline-flex;
-  /* position: absolute; */
-
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -80,6 +71,7 @@ button[disabled]:active {
   padding: 1%;
   border-radius: 16px;
 }
+
 @media screen and (max-width: 768px) {
   nav > h2 {
     font-family: "Dancing Script";
@@ -115,17 +107,10 @@ button[disabled]:active {
     width: 50px;
     background-color: white;
     display: inline-flex;
-    /* position: absolute; */
-
     text-align: center;
     justify-content: center;
     align-items: center;
-    /* width: 7%; */
   }
-  /* not ready */
-  /* body {
-    color: white;
-  } */
 }
 
 .icon-link {
@@ -133,29 +118,18 @@ button[disabled]:active {
   color: black;
 }
 body {
-  /* background-color: rebeccapurple; */
-  /* color: white; */
   background-image: url("../images/lakeside.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  /* color: #2C9FF5; */
-  /* height: 100vh; */
-  /* width: 50%; */
 }
 
 .navbar {
-  /* border: 3px solid; */
   padding: 1%;
-  /* margin-top: -1%; */
   background-color: rgb(255, 255, 255, 0.5);
   backdrop-filter: blur(14px);
   box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
   color: black;
-  /* display: none; */
-  /* color: #2C9FF5; */
-  /* display: flex;
-  align-items: center; */
 }
 
 #bigContent {
@@ -163,7 +137,6 @@ body {
   border-radius: 50px;
   padding: 1%;
   text-align: center;
-  /* font-size: 24pt; */
   color: #047FA4;
   text-shadow: white 1px 0 10px;
 }
@@ -209,7 +182,6 @@ body {
 }
 
 #searchBar {
-  /* Group 5 */
   color: white;
   position: absolute;
   width: 283px;
@@ -224,21 +196,17 @@ h1 {
 }
 
 input[type="number"] {
-  /* padding: 1%; */
   text-align: center;
   width: 14%;
-  /* padding: /%; */
 }
 .playNpause {
   background: none;
-  /* border: none; */
 }
 
 #timerBox {
   text-align: center;
   display: inline-flex;
   flex-direction: column;
-  /* background-color: rebeccapurple; */
   width: 100%;
   justify-items: center;
   align-items: center;
@@ -283,19 +251,19 @@ input[type="number"] {
     height: 45em;
     width: 25em;
   }
-
 }
 
 @media screen and (min-width: 768px) {
-
   textarea {
     height: 30em;
     width: 100%;
   }
 }
+
 #counterParagraph {
   text-align: center;
 }
+
 .return {
   font-size: xx-large;
 }

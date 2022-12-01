@@ -1,3 +1,4 @@
+// If user is logged in. Assign the userID. Otherwise, go back to login page!
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         // If logged in

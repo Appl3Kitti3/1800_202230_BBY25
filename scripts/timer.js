@@ -4,20 +4,14 @@ var ex1,ex2,ex3,ex4;
 const delay = 1000;
 
 // Do setUp() whenever there is a new user.
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    db.collection('users').doc(user.uid).collection('timers').get().then(sub => {
-      // if sub collection exists
-      if (sub.docs.length > 0) {
-      } else {
-        console.log("Collection not found, setting up...")
-        setUp();
-        setUpDurations();
-      }
-    })
-    console.log("User " + user.uid + " logged on!");
+db.collection('users').doc(localStorage.getItem('userID')).collection('timers').get().then(sub => {
+  if (sub.docs.length <= 0) {
+    // console.log("getTimeTracker() function ready.");
+    console.log("Collection not found, setting up.");
+    setUp();
+    setUpDurations();
   }
-})
+});
 
 // Declare the timers.
 const deadLine = new Date();
@@ -28,10 +22,15 @@ const deadLine3 = new Date();
 // Begin Process.
 start();
 
+// If a new user is created, this function produces an error so
+// reload your page.
+getTimeTracker();
+
 /**
  * A function that starts the timer.js script
  */
 function start() {
+  // console.log("start() function ready.");
   initalize();
   console.log("User inputs beyond this point.");
   getData('users');
@@ -42,6 +41,7 @@ function start() {
  * Initalizes the timers and its HTML element.
  */
 function initalize() {
+  // console.log("initalize() function ready.");
   var list = [deadLine,deadLine1,deadLine2,deadLine3];
   var i = 1;
   list.forEach(element => {
@@ -51,7 +51,6 @@ function initalize() {
 
     updateName("deadline" + i, element);
     changeToButton(i);
-    getTimeTracker();
     i++;
   });
 }
@@ -62,6 +61,7 @@ function initalize() {
  * @returns a 0 and the number below 10. 
  */
 function printZero(timeNum) {
+  // console.log("printZero(timerNum) function ready.");
     if (timeNum < 10) {
       return "0" + timeNum;
     }
@@ -74,6 +74,7 @@ function printZero(timeNum) {
  * @see timer.html
  */
 function changeToButton(thing) {
+  // console.log("changeToButton(thing) function ready.");
   document.getElementById("deadline" + thing).innerHTML = 
   " <input type='number'   maxlength=2 placeholder='h' id='hour'>" 
   + "<input type='number' maxlength=2 placeholder='m' id='minute'>"
@@ -100,7 +101,8 @@ function changeToButton(thing) {
  * @param {*} type of time (hours / minute / seconds)
  * @param {*} id of the timer
  */
-function setDuration(value,type,id) {
+function setDuration(value, type, id) {
+  // console.log("setDuration(value, type, id) function ready.");
     switch (type) {
       case "hour":
         getTimerbyId("deadline" + id).setHours(value);
@@ -127,6 +129,7 @@ function setDuration(value,type,id) {
  * @returns the respectful Date object
  */
 function getTimerbyId(elementId) {
+  // console.log("getTimerbyId(elementId) function ready.");
   switch (elementId) {
     case "deadline1":
       return deadLine;
@@ -144,18 +147,21 @@ function getTimerbyId(elementId) {
  * @param {*} id of the HTML element
  * @param {*} timer name of the timer
  */
-function updateName(id,timer) {
+function updateName(id, timer) {
+  // console.log("updateName(id, timer) function ready.");
   document.getElementById(id).innerHTML= '<button onclick="changeToButton(\'' + id.charAt(id.length - 1) + '\')">' + printZero(timer.getHours()) + ':' + printZero(timer.getMinutes()) + ':' + printZero(timer.getSeconds()) + '</button>'    
 }
 
 var strCounter = "";
 var currentCounter = [0,0,0];
+
 /**
  * Updates the HTML every second.
  * @param {*} id of the HTML element
  * @param {*} timer name of the timer
  */
-function loop(id,timer) {
+function loop(id, timer) {
+  // console.log("loop(id, timer) function ready.");
   timer.setTime(timer.getTime() - 1000);
   document.getElementById("deadline" + id).innerHTML= '<button onclick="changeToButton(\'' + ("deadline" + id) + '\')">' + printZero(timer.getHours()) + ':' + printZero(timer.getMinutes()) + ':' + printZero(timer.getSeconds()) + '</button>'
   if (timer.getHours()+timer.getMinutes()+timer.getSeconds() == 0) {
@@ -163,17 +169,17 @@ function loop(id,timer) {
     alert("A timer is finished!");
     stopTimer(id);
     setTimeTracker(id);
-    getTimeTracker(id);
+    getTimeTracker();
 
-    console.log("" + timer.getHours() + timer.getMinutes() + timer.getSeconds());
+    // console.log("" + timer.getHours() + timer.getMinutes() + timer.getSeconds());
   }
 }
-
 
 /**
  * Get timer tracker.
  */
-function getTimeTracker(id) {
+function getTimeTracker() {
+  // console.log("getTimeTracker() function ready.");
     let counter01 = db.collection('users').doc(localStorage.getItem('userID')).collection('timers');
     counter01.doc("Counter").onSnapshot(counterDoc => {
       var counterArray1 = counterDoc.data().counter.split(":");
@@ -194,6 +200,7 @@ function getTimeTracker(id) {
 }
 
 function setTimeTracker(id) {
+  // console.log("setTimerTracker(id) function ready.");
   db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Timers " + id).get().then(doc => {
     var counterArray = doc.data().duration.split(":");
     if (parseInt(counterArray[2]) >= 60) {
@@ -207,7 +214,7 @@ function setTimeTracker(id) {
     currentCounter[2]+=parseInt(counterArray[2]);
     strCounter = currentCounter[0] + "h " + currentCounter[1] + "m " + currentCounter[2] + "s ";
     document.getElementById("totalCounter").innerHTML = strCounter;
-    writeCounterData(id, (`${currentCounter[0]}:${currentCounter[1]}:${currentCounter[2]}`));
+    writeCounterData((`${currentCounter[0]}:${currentCounter[1]}:${currentCounter[2]}`));
   })
 }
 
@@ -216,8 +223,10 @@ function setTimeTracker(id) {
  * @param {*} id of the HTML element
  */
 function startTimer(id) {
+  // console.log("startTimer(id) function ready.");
   let play = document.getElementById("play" + id);
   let nameElementParent = play.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[0];
+  // I have no idea what this does.
   if (nameElementParent.childNodes.length == 1) {
     getData('users');
   }
@@ -251,6 +260,7 @@ function startTimer(id) {
  * @param {*} id of the HTML element
  */
 function stopTimer(id) {
+    // console.log("stopTimer(id) function ready.");
   switch ("deadline" + id) {
     case "deadline1":
       clearInterval(ex1);
@@ -283,75 +293,63 @@ function stopTimer(id) {
  * @param {*} array of timer names 
  */
 function changeTimerName(array) {
+  // console.log("changeTimerName(array) function ready.");
   const names = document.querySelectorAll(".timerName");
   for (var nameClass = 0; nameClass < names.length; nameClass++ ) {
-    names[nameClass].innerHTML = '<button name="somet" class="TELEVISION" onclick="changeToInput_Name(this, ' + (nameClass + 1) + ')" style="border: none;  background-color: transparent;">' + array[nameClass] + '</button>';
+    names[nameClass].innerHTML = '<button name="namePlaceHolderButton" onclick="changeToInput_Name(this, ' + (nameClass + 1) + ')" style="border: none;  background-color: transparent;">' + array[nameClass] + '</button>';
   }
 }
-
 
 /**
  * Collects data from firebase.
  * @param {*} collection name of the database
  */
 function getData(collection) {
-  firebase.auth().onAuthStateChanged(user => {
-    // Check if a user is signed in:
-    if (user) {
-        // Do something for the currently logged-in user here:
-        var i = 1;
-        var nam = "1";
-        var test = [];
-        db.collection(collection).doc(user.uid).collection('timers').get().then(snap => {
-          snap.forEach(doc => {
-            if (doc.id == "Counter") {
+  // console.log("getData(collection) function ready.");
+  var i = 1;
+  var test = [];
+  db.collection(collection).doc(localStorage.getItem('userID')).collection('timers').get().then(snap => {
+    snap.forEach(doc => {
+      if (doc.id != "Counter") {
+        test.push(doc.data().name);
+        durationList = doc.data().duration.split(":");
 
-            } else {
-              test.push(doc.data().name);
-              durationList = doc.data().duration.split(":");
-  
-              setDuration(parseInt(durationList[0]),"hour",i);
-              setDuration(parseInt(durationList[1]),"minute",i);
-              setDuration(parseInt(durationList[2]),"second",i);
-          
-              i++;
-              if (i == 5) {
-                changeTimerName(test);
-              }
-            }
-          })
-        })
-
-    } else {
-        // No user is signed in.
-    }
-  });
+        setDuration(parseInt(durationList[0]),"hour",i);
+        setDuration(parseInt(durationList[1]),"minute",i);
+        setDuration(parseInt(durationList[2]),"second",i);
+    
+        i++;
+        if (i == 5) {
+          changeTimerName(test);
+        }
+      }
+    })
+  })
 }
 
+/**
+ * Sets up the innerHTML of the 4 timers.
+ */
 function setUpDurations() {
+  // console.log("setUpDurations() function ready.");
   document.getElementById("deadline1").innerHTML= '<button onclick="changeToButton(\'1\')">' + printZero(deadLine.getHours()) + ':' + printZero(deadLine.getMinutes()) + ':' + printZero(deadLine.getSeconds()) + '</button>'
   document.getElementById("deadline2").innerHTML= '<button onclick="changeToButton(\'2\')">' + printZero(deadLine1.getHours()) + ':' + printZero(deadLine1.getMinutes()) + ':' + printZero(deadLine1.getSeconds()) + '</button>'
   document.getElementById("deadline3").innerHTML= '<button onclick="changeToButton(\'3\')">' + printZero(deadLine2.getHours()) + ':' + printZero(deadLine2.getMinutes()) + ':' + printZero(deadLine2.getSeconds()) + '</button>'
   document.getElementById("deadline4").innerHTML= '<button onclick="changeToButton(\'4\')">' + printZero(deadLine3.getHours()) + ':' + printZero(deadLine3.getMinutes()) + ':' + printZero(deadLine3.getSeconds()) + '</button>'
 }
+
 /**
  * Updates firebase timer name.
  * @param {*} timerNum number of the timer
  * @param {*} name as String, name of the timer
  */
 function writeNameData(timerNum, name) {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      console.log(user.uid);
-      db.collection('users').doc(user.uid).collection('timers').doc("Timers " + timerNum).update({
-        name: name
-      }).then(function () {
-        console.log(name);
-      })
-    } else {
-
-    }
-  });
+  // console.log("writeNameData(timerNum, name) function ready.");
+  db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Timers " + timerNum).update({
+    name: name
+  }).then(function () {
+    // console.log("Callback function was used for writeNameData(timerNum, name).")
+  })
 }
 
 /**
@@ -360,58 +358,53 @@ function writeNameData(timerNum, name) {
  * @param {*} duration of the timer. (00 : 00 : 00 as String)
  */
 function writeData(timerNum, duration) {
+  // console.log("writeData(timerNum, duration) function ready.");
   db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Timers " + timerNum).update({
     duration: duration
   }).then(function () {
-    console.log("Duration changed!");
+    // console.log("Duration changed!");
   })
-  
-  //method #1:  insert with html only
-  //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
-  //method #2:  insert using jquery
 }
 
 /**
  * Writes counter data.
- * @param {*} timerNum as int
  * @param {*} counterDuration as String 
  */
-function writeCounterData(timerNum, counterDuration) {
+function writeCounterData(counterDuration) {
+  // console.log("writeCounterData(timerNum, name) function ready.");
   db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Counter").update({
     counter: counterDuration
   }).then(function () {
-    console.log("Counter recorded!");
+    // console.log("Counter recorded!");
   })
 }
 /**
  * Creates a sub collection of Timers.
  */
 function setUp() {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      for (var i = 1; i <= 4; i++ ) {
-        var timersRef = db.collection('users').doc(user.uid).collection('timers').doc("Timers " + i);
-        timersRef.set({
-          name: "Timers " + i,
-          duration: "0:0:0"
-        });
-      }
-      var counterRef = db.collection('users').doc(user.uid).collection('timers').doc("Counter");
-      counterRef.set({
-        counter: "0:0:0"
-      });
-    }
-  })
+  // console.log("setUp() function ready.");
+  for (var i = 1; i <= 4; i++) {
+    var timersRef = db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Timers " + i);
+    timersRef.set({
+      name: "Timers " + i,
+      duration: "0:0:0"
+    });
+  }
+  var counterRef = db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Counter");
+  counterRef.set({
+    counter: "0:0:0"
+  });
 }
 
 /**
- * @special Legendary Method
+ * @special Legendary Method -> input.oninput
  * Calls the function writeNameData() and updates whenever the user types
  * in the input box. 
  * @param {*} element of the input box 
  * @param {*} timerID (both the id of the elment and id of the timer)
  */
-function changeToInput_Name(element,timerID) {
+function changeToInput_Name(element, timerID) {
+  // console.log("changeToInput_Name(element, timerID) function ready.");
   element.removeAttribute('onclick');
   element.innerHTML = '<input type="text" class="changeName" id="' + "TimerName" + (timerID) + '"/>';
   element.oninput = function () {

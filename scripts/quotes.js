@@ -1,4 +1,4 @@
-var currentUser;
+var currentUser = db.collection('users').doc(localStorage.getItem('userID'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     currentUser = db.collection("users").doc(user.uid); //global
@@ -9,6 +9,8 @@ firebase.auth().onAuthStateChanged((user) => {
     window.location.href = "login.html";
   }
 });
+
+displayCards("quotes");
 
 // this is a setUp()
 // this code must be called through the console
@@ -42,25 +44,28 @@ async function getCSVdata() {
     writeCSVData(columns);
   });
 }
-
+// Run once.
 // getCSVdata().then({
 //   // dont put anything here
 // });
+
+/**
+ * Writes the quotes into the database.
+ * @param {*} list as array
+ */
 function writeCSVData(list) {
-  firebase.auth().onAuthStateChanged((user) => {
-    // If user logged in or current logged in user
-    if (user) {
-      var quotesRef = db.collection("quotes");
-      quotesRef.add({
-        quote: list[0],
-        // AUTHOR AND BOOK
-        author: list[1],
-        tags: list[2],
-      });
-    }
+  var quoteRef = db.collection("quotes");
+  quoteRef.add({
+    quote: list[0],
+    author: list[1],
+    tags: list[2]
   });
 }
 
+/**
+ * Displays all the quotes from database.
+ * @param {*} collection 
+ */
 function displayCards(collection) {
   let cardTemplate = document.getElementById("quoteCardTemplate");
   let cardGroup = document.getElementById("cardContainer");
@@ -102,15 +107,17 @@ function displayCards(collection) {
     });
 }
 
-displayCards("quotes");
-
 // console.log(currentUser);
 
+/**
+ * Saves quote to the database.
+ * @param {*} quote as String
+ */
 function saveBookmark(quote) {
   currentUser
     .set(
       {
-        bookmarks: firebase.firestore.FieldValue.arrayUnion(quote),
+        bookmarks: firebase.firestore.FieldValue.arrayUnion(quote)
       },
       {
         merge: true,
@@ -125,6 +132,10 @@ function saveBookmark(quote) {
     });
 }
 
+/**
+ * Removes bookmarked quote from database.
+ * @param {*} quote as String
+ */
 function removeBookmark(quote) {
   currentUser
     .set(

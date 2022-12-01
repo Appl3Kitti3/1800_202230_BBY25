@@ -1,6 +1,4 @@
-
-@media screen and (max-width:760px) {
-    
+@media screen and (max-width:760px) {    
     #memeCardGroup {
         grid-template-columns: 45vw 45vw ;
         row-gap: 1vh;
@@ -10,6 +8,7 @@
         display: grid;
     }
 }
+
 @media screen and (min-width: 760px) {
     #memeCardGroup {
         grid-template-columns: 18vw 20vw 20vw 20vw 19vw;
@@ -20,9 +19,11 @@
         display: grid;
     }
 }
+
 #zoomed {
     width: 30%;
 }
+
 #test {
     display: flex;
     align-items: center;

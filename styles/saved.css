@@ -42,10 +42,10 @@ font-size: 14pt;
 
 i {
   float: right;
-  font-size: 24px;}
+  font-size: 24px;
+}
 
 @media only screen and (max-width: 768px) {
-
   .music-card {
     width: 80%;
   }

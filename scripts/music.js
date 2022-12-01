@@ -1,42 +1,31 @@
-var currentUser;
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        populateCardsDynamically();
-        setBookmarkIcon(user);
+var currentUser = db.collection("users").doc(localStorage.getItem('userID'));
 
-        currentUser = db.collection("users").doc(user.uid);   //global
-        console.log(currentUser);
-
-
-    } else {
-        // No user is signed in.
-        console.log("No user is signed in");
-        window.location.href = "login.html";
-    }
-});
+// Starts
+populateCardsDynamically();
+setBookmarkIcon();
 
 document.getElementById("search-submit").addEventListener("click", filterMusic);
 
 var keyword;
 
+/**
+ * Used for searchbar.
+ * Collects videos that have the same tag.
+ */
 function filterMusic() {
     keyword = document.getElementById("search-bar").value;
-    console.log(keyword);
+    // console.log(keyword);
     document.getElementById('musicCardGroup').innerHTML = "";
     populateCardsDynamicallyWithSearch(keyword);
 }
 
-
-
-
-
-
+/**
+ * Shows all videos from the database.
+ */
 function populateCardsDynamically() {
   let musicCardTemplate = document.getElementById("musicCardTemplate");
   let musicCardGroup = document.getElementById("musicCardGroup");
-
   db.collection("music").get()
-
     .then(allMusic => {
       allMusic.forEach(doc => {
         
@@ -69,8 +58,10 @@ function populateCardsDynamically() {
     })
 }
 
+/**
+ * Shows all videos that correspond to the search keyword.
+ */
 function populateCardsDynamicallyWithSearch() {
-  
   let musicCardTemplate = document.getElementById("musicCardTemplate");
   let musicCardGroup = document.getElementById("musicCardGroup");
 
@@ -109,26 +100,36 @@ function populateCardsDynamicallyWithSearch() {
     })
 }
 
+/**
+ * Helper to redirect clicked videos to a different page.
+ * @param {*} id 
+ */
 function setMusicData(id){
-            localStorage.setItem ('videoId', id);
+  localStorage.setItem ('videoId', id);
 }
 
-
+/**
+ * Saves music video to the database array.
+ * @param {*} musicLink as music id.
+ */
 function saveBookmark(musicLink) {
     currentUser.set({
-            bookmarks: firebase.firestore.FieldValue.arrayUnion(musicLink)
-        }, {
-            merge: true
-        })
-        .then(function () {
-            console.log("bookmark has been saved for: " + currentUser);
-            var iconID = 'save-' + musicLink;
-            //console.log(iconID);
-            document.getElementById(iconID).innerText = 'bookmark';
-        });
+      bookmarks: firebase.firestore.FieldValue.arrayUnion(musicLink)
+    }, {
+      merge: true
+    })
+    .then(function () {
+        console.log("bookmark has been saved for: " + currentUser);
+        var iconID = 'save-' + musicLink;
+        //console.log(iconID);
+        document.getElementById(iconID).innerText = 'bookmark';
+    });
 }
 
-//Removes the bookmarked link from the user's profile
+/**
+ * Removes music video from the saved array in the database.
+ * @param {*} musicLink as music id.
+ */
 function removeBookmark(musicLink) {
 console.log(musicLink);
   currentUser.set({
@@ -142,9 +143,8 @@ console.log(musicLink);
     })
   }
 
-
-
 //Uploads new music information into Firestore
+// Only called once.
 async function getMusicData() {
   const response = await fetch("./playlistItems.json");
   const data = await response.text();
@@ -179,36 +179,30 @@ async function getMusicData() {
     
     }
   }
+// getMusicData();
 
-
-  // getMusicData();
-
-function setBookmarkIcon(user) {
-  db.collection("users").doc(user.uid).get()
-
+/**
+ * Sets the bookmark functionality.
+ */
+function setBookmarkIcon() {
+  db.collection("users").doc(localStorage.getItem('userID')).get()
     .then(userDoc => {
-
       var musicBookmarks = userDoc.data().bookmarks;
       // console.log(musicBookmarks);
-      
-
-
       musicBookmarks.forEach(thisMusicID => {
         console.log(thisMusicID);
-        
         db.collection("music").where("videoId", "==", thisMusicID).get().then(snap => {
           size = snap.size;
           queryData = snap.docs;
           if (size == 1) {
-          if(document.getElementById("save-" + thisMusicID)){
-          document.getElementById("save-" + thisMusicID).innerHTML = 'bookmark';
-          }
-          }
-          else {
-            console.group("Query has more than one data")
+            if(document.getElementById("save-" + thisMusicID)) {
+              document.getElementById("save-" + thisMusicID).innerHTML = 'bookmark';
+            }
+          } else {
+            console.group("Query has more than one data");
           }
         })
       });
-    })
+  })
 }
 

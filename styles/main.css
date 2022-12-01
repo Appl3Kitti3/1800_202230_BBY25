@@ -22,9 +22,6 @@ body {
   border-radius: 8px;
   padding-right: calc(var(--bs-gutter-x) * .2);
   padding-left: calc(var(--bs-gutter-x) * .2);
-  /* margin-left: -10%;
-  margin-right: 10%; */
-  /* width: 140%; */
 }
 
 .navbar-nav {
@@ -38,7 +35,6 @@ body {
 .navbar-toggler-icon {
   display: none;
 }
-
 
 h5 {
   color: #047FA4;

@@ -1,26 +1,15 @@
-var currentUser;
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        // If logged in
-        currentUser = db.collection("users").doc(user.uid);
-        insertName();
-        getTimeMessage();
-    }
-    else {
-        console.log("No users available.");
-        window.location.href = "login.html";
-    }
-});
+var currentUser = db.collection('users').doc(localStorage.getItem('userID'));
+
+// Start.
+insertName();
+getTimeMessage();
 
 /**
  * Automatically updates the username heading.
  */
 function insertName() {
-
     currentUser.get().then((userDoc) => {
-        
         var userName = userDoc.data().name;
-
         $("#username-placeholder").text(userName + "!");
     })
 }
@@ -73,8 +62,6 @@ function getTimeMessage() {
             // 12PM - 4:59PM - 12hrs - 16:59hrs - afternoon
             // 5PM - 11:59PM - 17hrs 23:59hrs - evening
             // console.log(time.getTimezoneOffset())
-
     }
-    
-    console.log("" + time.getMonth() + time.getDate());
+    // console.log("" + time.getMonth() + time.getDate());
 }

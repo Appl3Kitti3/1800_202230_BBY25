@@ -2,6 +2,8 @@
 // Comics
 // Relatable Content
 
+displayCategoryCards();
+
 /**
  * Display cards.
  */
@@ -28,10 +30,8 @@ function displayCategoryCards() {
     }
 }
 
-displayCategoryCards();
-
 /**
- * 
+ * Sets the category to the selected category.
  * @param {*} id 
  */
 function setData(id) {

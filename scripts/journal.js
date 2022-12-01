@@ -1,19 +1,18 @@
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        currentUser = user;
-        setUp(user);
-        getJournalContent();
-        saveJournal();
-    } else {
+// firebase.auth().onAuthStateChanged(user => {
+//     if (user) {
+//         currentUser = user;
+//         setUp(user);
+//         getJournalContent();
+//         saveJournal();
+//     } else {
 
-    }
-})
+//     }
+// })
 
-// Efficient setup method
-/**
- * if (localStorage.getItem('userID') != null) {
- * }
- */
+setUp();
+getJournalContent();
+
+// saveJournal();
 
 /**
  * Saves journal.
@@ -30,6 +29,9 @@ function saveJournal() {
     })
 }
 
+/**
+ * Get journal text.
+ */
 function getJournalContent() {
     db.collection('users').doc(localStorage.getItem('userID')).collection('journals').doc("My Journal").get().then(text => {
         document.getElementById("journalInput").innerHTML = text.data().description;
@@ -38,22 +40,21 @@ function getJournalContent() {
 
 /**
  * Set up function.
- * @param {*} user as var
  */
-function setUp(user) {
-    db.collection('users').doc(user.uid).collection('journals').get().then(sub => {
+function setUp() {
+    db.collection('users').doc(localStorage.getItem('userID')).collection('journals').get().then(sub => {
         // if sub collection exists
         if (sub.docs.length > 0) {
         } else {
-          console.log("Collection not found, setting up...");
-          createExampleDocument(user.uid);
+            console.log("Collection not found, setting up...");
+            createExampleDocument(localStorage.getItem('userID'));
         }
-      })
+    })
 }
 
 /**
  * Create an example document for new users.
- * @param {*} id as String 
+ * @param {*} id as String -> user.uid
  */
 function createExampleDocument(id) {
     let exampleDocument = db.collection('users').doc(id).collection('journals').doc('My Journal');
