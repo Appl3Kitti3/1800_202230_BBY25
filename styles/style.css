@@ -303,3 +303,11 @@ input[type="number"] {
 #counterParagraph {
   text-align: center;
 }
+.return {
+  font-size: xx-large;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
