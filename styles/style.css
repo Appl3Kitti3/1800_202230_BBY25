@@ -19,7 +19,7 @@ nav > h2 {
 }
 
 .fixed-bottom {
-  height: 9%;
+  height: 10%;
   padding: 0.65%;
   background-color: rgb(255, 255, 255, 0.5);
   backdrop-filter: blur(14px);
@@ -28,7 +28,10 @@ nav > h2 {
 }
 
 .fixed-bottom .container {
-  margin-top: 2%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
 }
 
 body {
