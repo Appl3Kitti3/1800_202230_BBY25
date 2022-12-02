@@ -11,7 +11,7 @@
 
 setUp();
 getJournalContent();
-
+saveJournal();
 // saveJournal();
 
 /**

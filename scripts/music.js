@@ -36,16 +36,17 @@ function populateCardsDynamically() {
         testMusicCard.querySelector('.card-title').innerHTML = musicTitle;     
         // testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
         
+        let element = testMusicCard.querySelector('i');
         testMusicCard.querySelector('a').onclick = () => setMusicData(videoId);
-        testMusicCard.querySelector('i').id = 'save-' + videoId;
+        element.id = 'save-' + videoId;
         // testMusicCard.getElementById(`save-${videoId}`).addEventListener('click', toggleBookmark, false);
-        testMusicCard.querySelector('i').onclick = () => {
-          if (document.querySelector('i').innerHTML === 'bookmark_border') {
+        element.onclick = () => {
+          if (element.innerHTML === 'bookmark_border') {
           saveBookmark(videoId);
-          console.log(document.querySelector('i').innerHTML)
+          console.log(element.innerHTML)
           } else {
           removeBookmark(videoId);
-          console.log(document.querySelector('i').innerHTML + 'a')
+          console.log(element.innerHTML + 'a')
           }
           
           };
@@ -78,16 +79,17 @@ function populateCardsDynamicallyWithSearch() {
         testMusicCard.querySelector('.card-title').innerHTML = musicTitle;     
         // testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
         
+        let element = testMusicCard.querySelector('i');
         testMusicCard.querySelector('a').onclick = () => setMusicData(videoId);
-        testMusicCard.querySelector('i').id = 'save-' + videoId;
+        element.id = 'save-' + videoId;
         // testMusicCard.getElementById(`save-${videoId}`).addEventListener('click', toggleBookmark, false);
-        testMusicCard.querySelector('i').onclick = () => {
-          if (document.querySelector('i').innerHTML === 'bookmark_border') {
+        element.onclick = () => {
+          if (element.innerHTML === 'bookmark_border') {
           saveBookmark(videoId);
-          console.log(document.querySelector('i').innerHTML)
+          console.log(element.innerHTML)
           } else {
           removeBookmark(videoId);
-          console.log(document.querySelector('i').innerHTML + 'a')
+          console.log(element.innerHTML + 'a')
           }
           
           };

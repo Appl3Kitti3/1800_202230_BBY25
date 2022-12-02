@@ -34,12 +34,13 @@ function getBookmarks() {
               let testMusicCard = musicCardTemplate.content.cloneNode(true);
               testMusicCard.querySelector('.card-title').innerHTML = musicTitle;
               // testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
-  
+
+              let element = testMusicCard.querySelector('i');
               testMusicCard.querySelector('a').onclick = () => setMusicData(videoId);
-              testMusicCard.querySelector('i').id = 'save-' + videoId;
-              testMusicCard.querySelector('i').innerText = 'bookmark';
-              testMusicCard.querySelector('i').onclick = () => {
-                if (document.querySelector('i').innerText === 'bookmark_border') {
+              element.id = 'save-' + videoId;
+              element.innerText = 'bookmark';
+              element.onclick = () => {
+                if (element.innerText === 'bookmark_border') {
                   saveBookmark(videoId);
                 } else {
                   removeBookmark(videoId);
@@ -87,9 +88,9 @@ db.collection("users").doc(localStorage.getItem('userID')).get()
           var author = doc.author; 
           let newcard = cardTemplate.content.cloneNode(true);
   
-          newcard.querySelector("i").id = "save-" + quote;
           let elementi = newcard.querySelector("i");
-          newcard.querySelector("i").onclick = () => {
+          elementi.id = "save-" + quote;
+          elementi.onclick = () => {
             if (elementi.innerText == "bookmark") {
               removeBookmark(quote);
             } else {

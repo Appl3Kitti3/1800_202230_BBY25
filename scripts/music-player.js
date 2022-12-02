@@ -8,9 +8,10 @@ function listenMusic() {
     var h = w * (9/16);
 
     let player = musicPlayerTemplate.content.cloneNode(true);
-    player.querySelector('iframe').src = "https://www.youtube.com/embed/" + videoId;
-    player.querySelector('iframe').width = w;
-    player.querySelector('iframe').height = h;     
+    let element = player.querySelector('iframe');
+    element.src = "https://www.youtube.com/embed/" + videoId;
+    element.width = w;
+    element.height = h;     
     musicPlayerWindow.appendChild(player);
         
 }

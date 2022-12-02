@@ -80,9 +80,9 @@ function displayCards(collection) {
 
         let newcard = cardTemplate.content.cloneNode(true);
 
-        newcard.querySelector("i").id = "save-" + quote;
         let elementi = newcard.querySelector("i");
-        newcard.querySelector("i").onclick = () => {
+        elementi.id = "save-" + quote;
+        elementi.onclick = () => {
           if (elementi.innerText == "bookmark_border") {
             saveBookmark(quote);
           } else {
