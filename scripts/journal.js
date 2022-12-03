@@ -1,18 +1,6 @@
-// firebase.auth().onAuthStateChanged(user => {
-//     if (user) {
-//         currentUser = user;
-//         setUp(user);
-//         getJournalContent();
-//         saveJournal();
-//     } else {
-
-//     }
-// })
-
 setUp();
 getJournalContent();
 saveJournal();
-// saveJournal();
 
 /**
  * Saves journal.

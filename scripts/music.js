@@ -14,7 +14,6 @@ var keyword;
  */
 function filterMusic() {
     keyword = document.getElementById("search-bar").value;
-    // console.log(keyword);
     document.getElementById('musicCardGroup').innerHTML = "";
     populateCardsDynamicallyWithSearch(keyword);
 }

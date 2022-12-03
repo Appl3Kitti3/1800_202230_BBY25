@@ -9,6 +9,9 @@ function loadSkeleton(){
   console.log($('#titlePlaceHolder').load('../skeletons/title.html'));
 }
 loadSkeleton();  //invoke the function
+/**
+ * Called when the log out option is clicked.
+ */
 function logOut() {
   localStorage.removeItem("userID");
 }

@@ -46,7 +46,6 @@ async function getCSVdata() {
 }
 // Run once.
 // getCSVdata().then({
-//   // dont put anything here
 // });
 
 /**
@@ -93,21 +92,12 @@ function displayCards(collection) {
         //update title and text and image
         newcard.querySelector(".blockquote").innerHTML = quote;
         newcard.querySelector(".blockquote-footer").innerHTML = author;
-        // newcard.querySelector(".card-image").src = `./images/${hikeID}.jpg`; //Example: NV01.jpg
-
-        //give unique ids to all elements for future use
-        // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-        // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-        // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
-
+        
         //attach to gallery
         cardGroup.appendChild(newcard);
-        //i++;   //if you want to use commented out section
       });
     });
 }
-
-// console.log(currentUser);
 
 /**
  * Saves quote to the database.
@@ -115,18 +105,14 @@ function displayCards(collection) {
  */
 function saveBookmark(quote) {
   currentUser
-    .set(
-      {
+    .set({
         bookmarks: firebase.firestore.FieldValue.arrayUnion(quote)
-      },
-      {
+      },{
         merge: true,
-      }
-    )
+      })
     .then(function () {
       console.log("bookmark has been saved for: " + currentUser);
       var iconID = "save-" + quote;
-      //console.log(iconID);
       //this is to change the icon of the hike that was saved to "filled"
       document.getElementById(iconID).innerText = "bookmark";
     });
@@ -138,14 +124,11 @@ function saveBookmark(quote) {
  */
 function removeBookmark(quote) {
   currentUser
-    .set(
-      {
+    .set({
         bookmarks: firebase.firestore.FieldValue.arrayRemove(quote),
-      },
-      {
+      },{
         merge: true,
-      }
-    )
+      })
     .then(function () {
       console.log("bookmark " + quote + "has been deleted for: " + currentUser);
       var iconID = "save-" + quote;

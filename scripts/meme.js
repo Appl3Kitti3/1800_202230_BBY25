@@ -24,9 +24,7 @@ function displayCategoryCards() {
         let categoryElement = cardGroup.querySelector(".container").id;
         cardGroup.querySelector(".container").onclick = () => setData(categoryElement);
 
-
         categorycardGroup.appendChild(cardGroup);
-
     }
 }
 

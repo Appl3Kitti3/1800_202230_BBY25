@@ -1,6 +1,13 @@
+/**
+ * The Most complicated code ever.
+ */
+
 // Declare variables
 var currentUser;
 var ex1,ex2,ex3,ex4;
+var strCounter = "";
+var currentCounter = [0,0,0];
+
 const delay = 1000;
 
 // Do setUp() whenever there is a new user.
@@ -44,12 +51,13 @@ function initalize() {
   // console.log("initalize() function ready.");
   var list = [deadLine,deadLine1,deadLine2,deadLine3];
   var i = 1;
-  list.forEach(element => {
-    element.setHours(0);
-    element.setMinutes(0);
-    element.setSeconds(0);
+  // Each timer duration is set to 0
+  list.forEach(timer => {
+    timer.setHours(0);
+    timer.setMinutes(0);
+    timer.setSeconds(0);
 
-    updateName("deadline" + i, element);
+    updateName("deadline" + i, timer);
     changeToButton(i);
     i++;
   });
@@ -61,6 +69,8 @@ function initalize() {
  * @returns a 0 and the number below 10. 
  */
 function printZero(timeNum) {
+  // occurs when one of the duration is below 10
+  // handles logic error, 00:9:00 to 00:09:00
   // console.log("printZero(timerNum) function ready.");
     if (timeNum < 10) {
       return "0" + timeNum;
@@ -70,27 +80,29 @@ function printZero(timeNum) {
 
 /**
  * Grants the ability to edit the timer duration.
- * @param {*} thing as element number after "deadline"
+ * @param {*} elementNumber as element number after "deadline"
  * @see timer.html
  */
-function changeToButton(thing) {
-  // console.log("changeToButton(thing) function ready.");
-  document.getElementById("deadline" + thing).innerHTML = 
+function changeToButton(elementNumber) {
+  // console.log("changeToButton(elementNumber) function ready.");
+  document.getElementById("deadline" + elementNumber).innerHTML = 
   " <input type='number'   maxlength=2 placeholder='h' id='hour'>" 
   + "<input type='number' maxlength=2 placeholder='m' id='minute'>"
   + "<input type='number' maxlength=2 placeholder='s' id='second'>";
 
+  // when the users clicks something outside the input box
+  //  after changing a duration
   document.getElementById("hour").onchange = function() {
     let hr = this.value; 
-    setDuration(hr, "hour",thing);
+    setDuration(hr, "hour",elementNumber);
   };
   document.getElementById("minute").onchange = function() {
     let min = this.value; 
-    setDuration(min,"minute",thing);
+    setDuration(min,"minute",elementNumber);
   };
   document.getElementById("second").onchange = function() {
     let sec = this.value; 
-    setDuration(sec,"second",thing);
+    setDuration(sec,"second",elementNumber);
   };
   
 }
@@ -125,6 +137,8 @@ function setDuration(value, type, id) {
 
 /**
  * Gets timer from id.
+ * You know its a hard code when you have to
+ * implement your own built in function.
  * @param {*} elementId of an element is a number 
  * @returns the respectful Date object
  */
@@ -152,9 +166,6 @@ function updateName(id, timer) {
   document.getElementById(id).innerHTML= '<button onclick="changeToButton(\'' + id.charAt(id.length - 1) + '\')">' + printZero(timer.getHours()) + ':' + printZero(timer.getMinutes()) + ':' + printZero(timer.getSeconds()) + '</button>'    
 }
 
-var strCounter = "";
-var currentCounter = [0,0,0];
-
 /**
  * Updates the HTML every second.
  * @param {*} id of the HTML element
@@ -170,8 +181,6 @@ function loop(id, timer) {
     stopTimer(id);
     setTimeTracker(id);
     getTimeTracker();
-
-    // console.log("" + timer.getHours() + timer.getMinutes() + timer.getSeconds());
   }
 }
 
@@ -183,10 +192,12 @@ function getTimeTracker() {
     let counter01 = db.collection('users').doc(localStorage.getItem('userID')).collection('timers');
     counter01.doc("Counter").onSnapshot(counterDoc => {
       var counterArray1 = counterDoc.data().counter.split(":");
+      // if seconds reaches over a minute
       if (parseInt(counterArray1[2]) >= 60) {
         counterArray1[2] = 0;
         counterArray1[1] = "" + parseInt(counterArray1[1]) + 1;
       }
+      // if minute reaches over a hour
       if (parseInt(counterArray1[1]) >= 60) {
         counterArray1[1] = 0;
         counterArray1[0] = "" + parseInt(counterArray1[0]) + 1;
@@ -203,9 +214,11 @@ function setTimeTracker(id) {
   // console.log("setTimerTracker(id) function ready.");
   db.collection('users').doc(localStorage.getItem('userID')).collection('timers').doc("Timers " + id).get().then(doc => {
     var counterArray = doc.data().duration.split(":");
+    // if seconds reaches over a minute
     if (parseInt(counterArray[2]) >= 60) {
       counterArray[1] = parseInt(counterArray[1]) + 1;
     }
+    // if minute reaches over a hour
     if (parseInt(counterArray[1]) >= 60) {
       counterArray[0] = parseInt(counterArray[0]) + 1;
     }
@@ -226,7 +239,9 @@ function startTimer(id) {
   // console.log("startTimer(id) function ready.");
   let play = document.getElementById("play" + id);
   let nameElementParent = play.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[0];
-  // I have no idea what this does.
+  // I have no idea what this does because I have not touched this part of the code
+  // in a while.
+  // Just place it there, it may be an important component.
   if (nameElementParent.childNodes.length == 1) {
     getData('users');
   }
@@ -237,19 +252,19 @@ function startTimer(id) {
   
   switch ("deadline" + id) {
     case "deadline1":
-      console.log("DeadLine 1 is at go");
+      console.log("Timer 1 is at go");
       ex1 = setInterval(loop,delay,id,deadLine);
     break;
     case "deadline2":
-      console.log("DeadLine 2 is at go");
+      console.log("Timer 2 is at go");
       ex2 = setInterval(loop,delay,id,deadLine1);
       break;
     case "deadline3":
-      console.log("DeadLine 3 is at go");
+      console.log("Timer 3 is at go");
       ex3 = setInterval(loop,delay,id,deadLine2);
       break;
     case "deadline4":
-      console.log("DeadLine 4 is at go");
+      console.log("Timer 4 is at go");
       ex4 = setInterval(loop,delay,id,deadLine3);
     break;
   }
@@ -378,6 +393,7 @@ function writeCounterData(counterDuration) {
     // console.log("Counter recorded!");
   })
 }
+
 /**
  * Creates a sub collection of Timers.
  */

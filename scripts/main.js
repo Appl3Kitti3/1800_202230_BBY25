@@ -61,7 +61,5 @@ function getTimeMessage() {
             // 5AM - 11:59AM - 5hrs - 11:59hrs - morning
             // 12PM - 4:59PM - 12hrs - 16:59hrs - afternoon
             // 5PM - 11:59PM - 17hrs 23:59hrs - evening
-            // console.log(time.getTimezoneOffset())
     }
-    // console.log("" + time.getMonth() + time.getDate());
 }

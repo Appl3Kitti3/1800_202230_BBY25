@@ -7,18 +7,18 @@ getData();
  */
 function getData() {
     let category = localStorage.getItem('memeCategory');
+    let element = document.getElementById("category-name");
     switch (category) {
         case "Animal Memes":
-            console.log("Hello!");
-            document.getElementById("category-name").innerHTML = "Animal Memes";
+            element.innerHTML = "Animal Memes";
             animalMemes();
             break;
         case "Comics":
-            document.getElementById("category-name").innerHTML = "Comics";    
+            element.innerHTML = "Comics";    
             comics();
             break;
         case "Others":
-            document.getElementById("category-name").innerHTML = "Others";
+            element.innerHTML = "Others";
             others();
             break;
     }
@@ -36,10 +36,6 @@ function animalMemes() {
  * Comics category.
  */
 function comics() {
-    // $.get("https://knowyourmeme.com/", function (data) {
-    //     console.log(data);
-    // })
-
     let listOPictures = ["https://cdn.acidcow.com/pics/20200917/1600352540_xsrk3mb1s0.jpg","https://static.boredpanda.com/blog/wp-content/uploads/2018/08/15803302_1194757503895360_7159603134019403776_n-5b7a8ccd65200__880.jpg", "https://acidcow.com/pics/20111229/the_most_hilarious_web_comic_strips_06.jpg", "https://i.pinimg.com/originals/e1/e8/43/e1e8439ea8499e1a0169ef51601d8e65.png", "https://th.bing.com/th/id/R.d61d20d9d7ad30ed170af14a6f3f737e?rik=88UNIqOnr6yUGQ&riu=http%3a%2f%2fstatic.boredpanda.com%2fblog%2fwp-content%2fuploads%2f2016%2f05%2ffunny-introvert-comics-61-57443a2d91a66__700.jpg&ehk=dtTwedPwupB6rxw8BdWXZmUNos%2fvEmgbtF59rHBHXg8%3d&risl=&pid=ImgRaw&r=0", "https://cdn.slidemodel.com/wp-content/uploads/20141-02-comic-book-powerpoint-template-16x9-5-870x489.jpg"];
     applyImages(listOPictures);
 }
@@ -69,21 +65,7 @@ function applyImages(list) {
     for (var i = 0; i < list.length; i++) {
         let cardGroup = memeCardTemplate.content.cloneNode(true);
         cardGroup.querySelector(".container").src = list[i];
-        let imageSrc = cardGroup.querySelector(".container").src;
 
-        cardGroup.querySelector(".container").onclick = () => 
-        displayZoomedImage(imageSrc);
         memeCardGroup.appendChild(cardGroup);
     }
-}
-
-/**
- * Users if you are reading this. Do not use it because it may clog up your screen.
- * @param {*} src as picture link
- */
-function displayZoomedImage(src) {
-    abc = 1;
-    // document.getElementById("memeCardGroup").style.background = "";
-    document.getElementById("zoomed").setAttribute('src', src);
-    document.getElementById("test").onclick = () => document.getElementById("zoomed").removeAttribute('src');
 }

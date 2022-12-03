@@ -11,7 +11,6 @@ getSavedQuotes();
  */
 function getBookmarks() {
   db.collection("users").doc(localStorage.getItem('userID')).get()
-  
     .then(userDoc => {
     
       var musicBookmarks = userDoc.data().bookmarks;
@@ -24,7 +23,6 @@ function getBookmarks() {
             size = snap.size;
             queryData = snap.docs;
   
-  
             if (size == 1) {
   
               var doc = queryData[0].data();
@@ -33,7 +31,6 @@ function getBookmarks() {
               var thumbnail = doc.thumbnail;
               let testMusicCard = musicCardTemplate.content.cloneNode(true);
               testMusicCard.querySelector('.card-title').innerHTML = musicTitle;
-              // testMusicCard.querySelector('.card-text').innerHTML = musicDescription; 
 
               let element = testMusicCard.querySelector('i');
               testMusicCard.querySelector('a').onclick = () => setMusicData(videoId);
