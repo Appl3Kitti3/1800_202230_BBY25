@@ -12,7 +12,7 @@
 setUp();
 getJournalContent();
 
-// saveJournal();
+saveJournal();
 
 /**
  * Saves journal.

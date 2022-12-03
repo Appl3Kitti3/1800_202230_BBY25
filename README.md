@@ -5,10 +5,8 @@
 * [Contents](#content)
 
 ## General Info
-This browser based web application to ...
-	* Hi I am Teddy D. I am excited about this project because we are developing applications for users!
-    * Hi my name is Cheryl.  I'm excited about this project because it's a chance to create something new.
-    * Hi im Aric
+This browser based web application is designed to provide a collection of stress-soothing features for the user.  It includes a quote library, music library, focus timers, journal, and a meme gallery.
+
 	
 ## Technologies
 Technologies used for this project:
@@ -40,18 +38,50 @@ It has the following subfolders and files:
     /lakeside.jpg            # background for the app
     /playarrow.svg           # play arrow for timer and the music
 ├── scripts                  # Folder for scripts
-    /authentication.js
-    /eachCategory.js
+    /authentication.js       # JS for authenticating users
+    /eachCategory.js         # JS for the meme page
+    /journal.js              # JS for the journal
+    /main.js                 # JS for the main page 
+    /meme.js                 # JS for th meme page
+    /music-player.js         # JS for the music player page
+    /music.js                # JS for the music page
+    /quote.js                # JS for the quote
+    /saved.js                # JS for the saved 
+    /script.js               # JS for after the user has been logged in
+
 ├── styles                   # Folder for styles
-    /blah.css                # 
+    /eachCategory.css        # style for eachCategory.html
+    /index.css               # style for index.html
+    /main.css                # style for main.html
+    /memes.css               # style for music.html
+    /music.css               # style for quotes.html
+    /saved.css               # style for saved.html
+    /style.css               # style for pages (general) 
+
+├── skeletons                # Folder for the skeletons
+    /footer.html             # footer HTML file, footer that is shared among the pages
+    /navBar.html             # nav bar HTML file, the nav bar that is shared among the pages
+    /navBarMain.html         # nav bar (full) HTML file, the full nav bar that is shared among the pages
 
 Firebase hosting files: 
-├── .firebaserc...
+├── .firebaserc
+├── firestore.indexes.json
+├── firestore.rules
+├── firebase.json 
+└── storage.rules
 
+## Resources
+- In-app icons from Feather v4.28.0 (Open Source https://feathericons.com/)
+- Logo homemade!
 
-```
+## Contact 
+* John Smith - jsmith@my.bcit.ca 
+* ...
 
-Tips for file naming files and folders:
-* use lowercase with no spaces
-* use dashes (not underscore) for word separation
+## Acknowledgements 
+* <a href="https://fontawesome.com/">Font Awesome</a>
+* <a href="https://fonts.adobe.com/">Adobe Fonts</a> 
+* <a href="https://fonts.google.com/">Google Fonts</a>
+* <a href="https://stock.adobe.com/images">Adobe Stock Images</a>
+* <a href="https://getbootstrap.com/">Bootstrap</a>
 
